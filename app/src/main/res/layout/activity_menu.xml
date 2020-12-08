@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_casino1"
+    tools:context=".Menu">
+
+    <Button
+        android:id="@+id/buttonJugar"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnJugar"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRanking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonRanking"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnRanking"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCredito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonJugar" />
+
+    <Button
+        android:id="@+id/buttonCredito"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnCredito"
+        app:layout_constraintBottom_toTopOf="@+id/buttonReglas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRanking" />
+
+    <Button
+        android:id="@+id/buttonReglas"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnReglas"
+        app:layout_constraintBottom_toTopOf="@+id/buttonConfiguracion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCredito" />
+
+    <Button
+        android:id="@+id/buttonConfiguracion"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnConfiguracion"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPuntuar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonReglas" />
+
+    <Button
+        android:id="@+id/buttonPuntuar"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnPuntuar"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSalir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonConfiguracion" />
+
+    <Button
+        android:id="@+id/buttonSalir"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/btnSalir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPuntuar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,36 +8,36 @@
     tools:context=".Juego">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageViewCarta1"
         android:layout_width="87dp"
         android:layout_height="130dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
         app:srcCompat="@drawable/carta_reverso" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageViewCarta2"
         android:layout_width="87dp"
         android:layout_height="130dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="143dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
         app:srcCompat="@drawable/carta_reverso" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewCarta3"
         android:layout_width="87dp"
         android:layout_height="130dp"
         android:layout_marginEnd="143dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
         app:srcCompat="@drawable/carta_reverso" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewFichas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -48,12 +48,12 @@
         app:srcCompat="@drawable/cajafichas" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewCarta4"
         android:layout_width="87dp"
         android:layout_height="130dp"
         android:layout_marginStart="132dp"
         android:layout_marginBottom="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonPedir"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/carta_reverso" />
 
@@ -64,7 +64,7 @@
         android:layout_marginStart="13dp"
         android:layout_marginBottom="13dp"
         android:backgroundTint="@android:color/holo_orange_dark"
-        android:text="Apostar"
+        android:text="@string/btnApostar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,7 +80,7 @@
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/imageButtonPedir"
         android:layout_width="36dp"
         android:layout_height="41dp"
         android:layout_marginStart="48dp"
@@ -92,32 +92,32 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/imageButtonPlantarse"
         android:layout_width="35dp"
         android:layout_height="42dp"
         android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonPedir"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonPedir"
         app:srcCompat="@android:drawable/ic_delete" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imageButtonDoblar"
         android:layout_width="42dp"
         android:layout_height="43dp"
         android:layout_marginStart="19dp"
         android:background="#00FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/imageButton6"
-        app:layout_constraintTop_toTopOf="@+id/imageButton6"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonPlantarse"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonPlantarse"
         app:srcCompat="@drawable/doblar_small" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/imageButtonSeparar"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="15dp"
         android:background="#00FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toTopOf="@+id/imageButton3"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonDoblar"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonDoblar"
         app:srcCompat="@drawable/separar_small" />
 
     <TextView
@@ -126,11 +126,11 @@
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/sniglet"
-        android:text="Apuesta: 100"
+        android:text="@string/tvApuesta"
         android:textAlignment="center"
         android:textColor="#FF9800"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewCarta3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

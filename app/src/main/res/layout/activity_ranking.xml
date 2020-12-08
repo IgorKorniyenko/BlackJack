@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ranking">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_casino1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewRanking"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    android:text="@string/tvRanking"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewRanking2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewRanking2"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    android:text="@string/tvRanking2"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewRanking"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewPrimero"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvPrimero"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewPrimero2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewRanking" />
+
+                <TextView
+                    android:id="@+id/textViewPrimero2"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvPrimero2"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewPrimero"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewRanking2" />
+
+                <TextView
+                    android:id="@+id/textViewSegundo"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvSegundo"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewSegundo2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPrimero" />
+
+                <TextView
+                    android:id="@+id/textViewSegundo2"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvSegundo2"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewSegundo"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPrimero2" />
+
+                <TextView
+                    android:id="@+id/textViewTercero"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvTercero"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewTercero2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSegundo" />
+
+                <TextView
+                    android:id="@+id/textViewTercero2"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvTercero2"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewTercero"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSegundo2" />
+
+                <TextView
+                    android:id="@+id/textViewCuarto"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvCuarto"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewCuarto2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTercero" />
+
+                <TextView
+                    android:id="@+id/textViewCuarto2"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvCuarto2"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCuarto"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTercero2" />
+
+                <TextView
+                    android:id="@+id/textViewQuinto"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvQuinto"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewQuinto2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCuarto" />
+
+                <TextView
+                    android:id="@+id/textViewQuinto2"
+                    android:layout_width="190dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="@string/tvQuinto2"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewQuinto"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCuarto2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
