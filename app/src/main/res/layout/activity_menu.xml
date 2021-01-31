@@ -9,10 +9,11 @@
 
     <Button
         android:id="@+id/buttonJugar"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnJugar"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonRanking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,10 +22,11 @@
 
     <Button
         android:id="@+id/buttonRanking"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnRanking"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonCredito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,10 +35,11 @@
 
     <Button
         android:id="@+id/buttonCredito"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnCredito"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonReglas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -45,10 +48,11 @@
 
     <Button
         android:id="@+id/buttonReglas"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnReglas"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonConfiguracion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -57,10 +61,11 @@
 
     <Button
         android:id="@+id/buttonConfiguracion"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnConfiguracion"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonPuntuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -69,10 +74,11 @@
 
     <Button
         android:id="@+id/buttonPuntuar"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnPuntuar"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSalir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -81,10 +87,11 @@
 
     <Button
         android:id="@+id/buttonSalir"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="360dp"
+        android:layout_height="65dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnSalir"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

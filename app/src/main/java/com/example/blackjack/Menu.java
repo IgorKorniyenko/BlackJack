@@ -8,8 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class Menu extends AppCompatActivity {
 
@@ -21,6 +24,9 @@ public class Menu extends AppCompatActivity {
     private Button btnPuntuar;
     private Button btnSalir;
     private Context context = this;
+
+    private EditText etCambioUsuario;
+    private EditText etCambioPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,24 +66,19 @@ public class Menu extends AppCompatActivity {
         btnCredito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
+                //AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.dialogCredito));
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+                builder.setTitle(R.string.btnCredito)
+                        .setItems(R.array.opcionesCredito, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                // TODO: Código para aumentar el crédito al jugador según la opción elegida
+                            }
+                        });
 
-                AlertDialog dialog = builder.create();
-
-                dialog.show();
+                builder.create().show();
             }
         });
 
@@ -88,6 +89,38 @@ public class Menu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(context, Reglas.class);
                 startActivity(i);
+            }
+        });
+
+
+        // Haciendo click en Configuración nos abre un Dialog para cambiar el usuario y/o la contraseña
+        btnConfiguracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                View myView = LayoutInflater.from(context).inflate(R.layout.dialog_configuracion,null);
+
+                builder.setView(myView)
+                        .setPositiveButton(R.string.dialogConfirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                etCambioUsuario = findViewById(R.id.editTextCambioUsuario);
+                                etCambioPassword = findViewById(R.id.editTextCambioPassword);
+
+                                dialog.dismiss();
+
+                                // TODO: Código para cambiar el usuario o la contraseña en la base de datos
+                            }
+                        })
+                        .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        });
+
+                builder.create().show();
             }
         });
 

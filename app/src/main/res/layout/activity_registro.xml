@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/fondo_casino1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:text="@string/tvNombre"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewApellidos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
+
+    <TextView
+        android:id="@+id/textViewApellidos"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:text="@string/tvApellidos"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editTextApellidos"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewNombre"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
+
+    <EditText
+        android:id="@+id/editTextApellidos"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEmail"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
+        app:layout_constraintStart_toStartOf="@+id/editTextNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textViewApellidos" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:text="@string/tvEmail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+        app:layout_constraintEnd_toEndOf="@+id/textViewApellidos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewApellidos"
+        app:layout_constraintTop_toBottomOf="@+id/editTextApellidos" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewNombreUsuario"
+        app:layout_constraintEnd_toEndOf="@+id/editTextApellidos"
+        app:layout_constraintStart_toStartOf="@+id/editTextApellidos"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
+
+    <TextView
+        android:id="@+id/textViewNombreUsuario"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:text="@string/tvNombreUsuario"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNombreUsuario"
+        app:layout_constraintEnd_toEndOf="@+id/textViewEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+    <EditText
+        android:id="@+id/editTextNombreUsuario"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPasswordRegistro"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombreUsuario" />
+
+    <TextView
+        android:id="@+id/textViewPasswordRegistro"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:text="@string/tvPassword"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegistro"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNombreUsuario"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewNombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreUsuario" />
+
+    <EditText
+        android:id="@+id/editTextPasswordRegistro"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNombreUsuario"
+        app:layout_constraintStart_toStartOf="@+id/editTextNombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordRegistro" />
+
+    <Button
+        android:id="@+id/buttonEnviar"
+        android:layout_width="376dp"
+        android:layout_height="65dp"
+        android:text="@string/btnEnviar"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistro"
+        app:layout_constraintVertical_bias="0.22000003" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

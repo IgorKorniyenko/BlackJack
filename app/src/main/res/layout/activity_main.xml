@@ -9,48 +9,53 @@
 
     <EditText
         android:id="@+id/editTextUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_width="376dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/etUsuario"
         android:textColor="@android:color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="376dp"
+        android:layout_height="69dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPassword"
         android:text="@string/etPassword"
         android:textColor="@android:color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/editTextUsuario"
         app:layout_constraintStart_toStartOf="@+id/editTextUsuario"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_width="376dp"
+        android:layout_height="65dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="@android:color/holo_orange_dark"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/btnLogin"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/buttonRegistrarse"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_width="376dp"
+        android:layout_height="65dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="@string/btnRegistrarse"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
         app:layout_constraintStart_toStartOf="@+id/buttonLogin"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
