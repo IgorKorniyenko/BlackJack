@@ -72,6 +72,8 @@ public class Juego extends AppCompatActivity {
                 builder.setView(myView)
                         .setPositiveButton(R.string.dialogConfirm, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+
+
                                 etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
 
 
@@ -84,8 +86,7 @@ public class Juego extends AppCompatActivity {
                                 }
 
                                 dialog.dismiss();
-                                //Hecho
-                                //Código para guardar la apuesta que ha hecho el jugador
+
                     }
                 })
                         .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
