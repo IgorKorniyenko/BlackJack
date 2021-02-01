@@ -154,18 +154,23 @@
     <string name="tvTitulo10">Plantarse</string>
     <string name="tvContenido10">Cuando el valor de una mano es igual o inferior a 21,
         puedes decidir plantarte y no arriesgarte a que el valor de dicha mano supere los 21.</string>
-    <string name="tvReglas">
-
-                                            Dividir
-        En determinadas variantes, cuando tus primeras dos cartas tienen el mismo valor (ocho-ocho,
+    <string name="tvTitulo11">Dividir</string>
+    <string name="tvContenido11">En determinadas variantes, cuando tus primeras dos cartas tienen el mismo valor (ocho-ocho,
         jota-diez, etc.), puedes realizar apuestas adicionales (iguales a la apuesta inicial), y dar
-        lugar a una segunda mano que también jugará contra la banca.  Doblar Puedes colocar una apuesta
-        adicional, igual a la apuesta inicial, a cambio de recibir sólo una carta más para cada una
-        de tus manos y plantarte automáticamente.  Rendirse En determinadas variantes del juego puedes
-        renunciar a la mitad de tu apuesta y poner fin a la mano inmediatamente.  Seguro En ciertas
+        lugar a una segunda mano que también jugará contra la banca.</string>
+    <string name="tvTitulo12">Doblar</string>
+    <string name="tvContenido12">Puedes colocar una apuesta adicional, igual a la apuesta inicial,
+        a cambio de recibir sólo una carta más para cada una de tus manos y plantarte automáticamente.</string>
+    <string name="tvTitulo13">Rendirse</string>
+    <string name="tvContenido13">En determinadas variantes del juego puedes renunciar a la mitad de
+        tu apuesta y poner fin a la mano inmediatamente.</string>
+    <string name="tvTitulo14">Seguro</string>
+    <string name="tvContenido14">En ciertas
         variantes, cuando la primera carta de la banca es un as, puedes apostar la mitad de tu apuesta
         original y recibir a cambio 2 a 1 si la banca completa su blackjack. Si la banca tiene blackjack,
-        te quedarás a pre en la mano.  Cobrar 1 a 1 Si te han repartido un blackjack, y la banca muestra
+        te quedarás a pre en la mano.</string>
+    <string name="tvTitulo15">Cobrar 1 a 1</string>
+    <string name="tvContenido15">Si te han repartido un blackjack, y la banca muestra
         un as, la opción cobrar 1 a 1 es un tipo especial de seguro disponible. Si decides cobrar 1 a 1,
         el pago será 1:1, independientemente de si la banca tiene blackjack o no. Si decides no cobrar
         1 a 1, la mano se jugará de forma normal.</string>
