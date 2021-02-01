@@ -86,7 +86,8 @@ public class Juego extends AppCompatActivity {
                                 }
 
                                 dialog.dismiss();
-
+                                //Hecho
+                                //Código para guardar la apuesta que ha hecho el jugador
                     }
                 })
                         .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
