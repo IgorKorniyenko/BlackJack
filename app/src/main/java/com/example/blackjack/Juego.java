@@ -74,8 +74,10 @@ public class Juego extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
 
+
                                 twApuesta.setText("Apuesta:" + etCantidadApuesta.getText());
                                 cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
+
 
                                 if(cantApostada > 0){
                                     iniciarJuego();
