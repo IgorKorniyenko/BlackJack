@@ -6,48 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewCambioUsuario"
-        android:layout_width="170dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/tvCambioUsuario"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/editTextCambioUsuario"
         android:layout_width="330dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:hint="@string/etCambioUsuario"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCambioUsuario" />
-
-    <TextView
-        android:id="@+id/textViewCambioPassword"
-        android:layout_width="170dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/tvCambioPassword"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewCambioUsuario"
-        app:layout_constraintStart_toStartOf="@+id/textViewCambioUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCambioUsuario" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextCambioPassword"
         android:layout_width="330dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="@string/etCambioPassword"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCambioPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCambioUsuario" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -177,17 +177,19 @@
 
 
     <!-- Registro -->
-    <string name="tvNombre">Nombre:</string>
-    <string name="tvApellidos">Apellidos:</string>
-    <string name="tvEmail">Email:</string>
-    <string name="tvNombreUsuario">Nombre de usuario:</string>
-    <string name="tvPassword">Contraseña:</string>
+    <string name="etRegNombre">Nombre</string>
+    <string name="etRegApellidos">Apellidos</string>
+    <string name="etRegEmail">Email</string>
+    <string name="etRegNombreUsuario">Nombre de usuario</string>
+    <string name="etRegPassword">Contraseña</string>
     <string name="btnEnviar">Enviar</string>
 
 
     <!-- Dialog Configuración -->
-    <string name="tvCambioUsuario">Nuevo usuario:</string>
-    <string name="tvCambioPassword">Nueva contraseña:</string>
+    <string name="etCambioUsuario">Nuevo usuario</string>
+    <string name="etCambioPassword">Nueva contraseña</string>
+    <string name="toastExito">Cambio realizado correctamente</string>
+    <string name="toastError">No se ha podido realizar el cambio</string>
 
 
     <!-- Dialog Apostar -->

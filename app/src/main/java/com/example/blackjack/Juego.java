@@ -58,6 +58,8 @@ public class Juego extends AppCompatActivity {
         cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1),findViewById(R.id.imageViewCarta2)));
         cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4)));
 
+        etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
+
         // Botón para apostar
         btnApostar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,11 +75,9 @@ public class Juego extends AppCompatActivity {
                         .setPositiveButton(R.string.dialogConfirm, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
+                                etCantidadApuesta = myView.findViewById(R.id.editTextCantidadApuesta);
 
-                                etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
-
-
-                                twApuesta.setText("Apuesta:" + etCantidadApuesta.getText());
+                                twApuesta.setText("Apuesta:" + etCantidadApuesta.getText().toString());
                                 cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
 
 

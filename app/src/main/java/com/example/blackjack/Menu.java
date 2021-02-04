@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Menu extends AppCompatActivity {
 
@@ -111,6 +112,13 @@ public class Menu extends AppCompatActivity {
                                 dialog.dismiss();
 
                                 // TODO: Código para cambiar el usuario o la contraseña en la base de datos
+
+//                                if (No ha habido error) {
+//                                    Toast.makeText(context, R.string.toastExito, Toast.LENGTH_SHORT).show();
+//                                }
+//                                else {
+//                                    Toast.makeText(context, R.string.toastError, Toast.LENGTH_SHORT).show();
+//                                }
                             }
                         })
                         .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
