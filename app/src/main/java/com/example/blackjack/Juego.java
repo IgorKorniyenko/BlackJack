@@ -39,6 +39,7 @@ public class Juego extends AppCompatActivity {
     private List<ImageView> cartasJugador = new ArrayList<>();
     private List<ImageView> cartasCrupie = new ArrayList<>();
     private int cantApostada;
+    boolean finPartida = false;
 
     private EditText etCantidadApuesta;
 
@@ -79,6 +80,7 @@ public class Juego extends AppCompatActivity {
 
                                 twApuesta.setText("Apuesta:" + etCantidadApuesta.getText().toString());
                                 cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
+                                //Restar creditos jugador
 
 
                                 if(cantApostada > 0){
@@ -146,9 +148,9 @@ public class Juego extends AppCompatActivity {
     }
 
     public void iniciarJuego(){
-
         String uriCarta;
         int valorCartasJugador, valorCartasCrupie;
+
 
         List<Carta> cartasRepartidasJugador = new ArrayList<>();
         List<Carta> cartasRepartidasCrupie = new ArrayList<>();
@@ -170,7 +172,109 @@ public class Juego extends AppCompatActivity {
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
+        //desactivar boton apuesta
+        //desactivar dividir
+        //activar boton doblar
+        //activar boton rendirse
 
+        if(!partidaTerminada(valorCartasCrupie, valorCartasJugador)){
+            int contador = 0;
+
+
+            while(!partidaTerminada(valorCartasCrupie,valorCartasJugador) || !finPartida){
+
+                if(contador == 0){
+                    if(comprobarSiSonIguales(cartasRepartidasJugador)){
+                        //Activar boton separar
+                        imgBtnSeparar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //Restar creditos
+                                //Repartir dos cartas mas
+                                //Dar carta a crupie
+                                //Desactivar boton separar
+                            }
+                        });
+                    }
+
+                    imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //Restar creditos jugador
+                            //Repartir cartas crupie y jugador
+                            //Desactivar boton doblar
+
+                            if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
+                                //reiniciarPartida();
+                            }
+                        }
+                    });
+                }
+
+
+                    imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //reiniciarPartida(2);
+                        }
+                    });
+
+
+
+                    imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //Repartir cartas crupie y jugador
+
+                            if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
+                                if((valorCartasCrupie > valorCartasJugador) && valorCartasCrupie < 22){
+                                    //reiniciarPartida(1);
+                                }else{
+                                    //reiniciarPartida(0);
+                                }
+
+                                finPartida = true;
+                            }
+                        }
+                    });
+
+                    contador ++;
+                }
+            }else{
+                //reiniciarPartida();
+        }
+    }
+
+
+
+
+    private boolean partidaTerminada(int valorCartasCrupie, int valorCartasJugador) {
+        boolean finPartida = false;
+
+        if(valorCartasCrupie == 21 || valorCartasJugador == 21){
+            if(valorCartasCrupie == 21){
+                //gana curpie
+                //reiniciarPartida(0);
+            }else{
+                //gana jugador
+                //reiniciarPartida(1);
+            }
+
+            finPartida = true;
+            //Toast din partida
+        }
+
+        return finPartida;
+    }
+
+    private boolean comprobarSiSonIguales(List<Carta> cartas) {
+        boolean exito = false;
+
+        if(cartas.get(0) == cartas.get(1)){
+            exito = true;
+        }
+
+        return exito;
     }
 
     public int calcularValorCartas(List<Carta> cartas){

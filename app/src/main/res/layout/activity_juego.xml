@@ -13,9 +13,9 @@
         android:layout_height="130dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/carta_reverso"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
-        app:srcCompat="@drawable/carta_reverso" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
 
     <ImageView
         android:id="@+id/imageViewCarta2"
@@ -23,9 +23,9 @@
         android:layout_height="130dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="143dp"
+        android:background="@drawable/carta_reverso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
-        app:srcCompat="@drawable/carta_reverso" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
 
     <ImageView
         android:id="@+id/imageViewCarta3"
