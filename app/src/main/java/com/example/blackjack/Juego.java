@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.blackjack.modelo.Baraja;
 import com.example.blackjack.modelo.Carta;
@@ -55,6 +58,11 @@ public class Juego extends AppCompatActivity {
         imgBtnPedirCarta = findViewById(R.id.imageButtonPedir);
         imgBtnSeparar = findViewById(R.id.imageButtonSeparar);
         twApuesta = findViewById(R.id.textViewApuesta);
+
+        imgBtnDoblar.setVisibility(View.INVISIBLE);
+        imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+        imgBtnPlantarse.setVisibility(View.INVISIBLE);
+        imgBtnSeparar.setVisibility(View.INVISIBLE);
 
         cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1),findViewById(R.id.imageViewCarta2)));
         cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4)));
@@ -106,6 +114,8 @@ public class Juego extends AppCompatActivity {
             }
         });
 
+
+
         // Botón para volver atrás
         imgBtnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,41 +124,11 @@ public class Juego extends AppCompatActivity {
             }
         });
 
-        // Botón para plantarse
-        imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Código para comprobar quién ha ganado y reasignar el crédito
-            }
-        });
-
-        // Botón para doblar la apuesta
-        imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Código para doblar la apuesta
-            }
-        });
-
-        // Botón para pedir una carta cuando no se superen los 21 puntos
-        imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Código para pedir una carta
-            }
-        });
-
-        // Botón para separar la apuesta
-        imgBtnSeparar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Código para separar la apuesta
-            }
-        });
     }
 
     public void iniciarJuego(){
-        String uriCarta;
+
+        String pathCarta;
         int valorCartasJugador, valorCartasCrupie;
 
 
@@ -160,32 +140,37 @@ public class Juego extends AppCompatActivity {
 
         for(int i=0; i<2; i++){
             cartasRepartidasJugador.add(b.siguienteCarta());
-            uriCarta = "R.drawable." + cartasRepartidasJugador.get(i).getValor().toString().toLowerCase() +cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase();
-            cartasJugador.get(i).setImageURI(Uri.parse(uriCarta));
+            pathCarta = "../../../../res/drawable-v24/" +
+                    cartasRepartidasJugador.get(i).getValor().toString().toLowerCase() +
+                    cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase() + ".png";
+
+            cartasJugador.get(i).setBackground(Drawable.createFromPath(pathCarta));
+            cartasJugador.get(i).setBackgroundResource(R.drawable.eightd);
+
 
 
             cartasRepartidasCrupie.add(b.siguienteCarta());
-            uriCarta = "R.drawable." + cartasRepartidasCrupie.get(i).getValor().toString().toLowerCase() +cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase();
-            cartasCrupie.get(i).setImageURI(Uri.parse(uriCarta));
+
+            pathCarta = "../../../../res/drawable-v24/" +
+                    cartasRepartidasCrupie.get(i).getValor().toString().toLowerCase() +
+                    cartasRepartidasCrupie.get(i).getPalo().toString().toLowerCase() + ".png";
+
+            cartasCrupie.get(i).setBackground(Drawable.createFromPath(pathCarta));
+            cartasCrupie.get(i).setBackgroundResource(R.drawable.ac);
+            //cartasCrupie.get(i).setBackground(Drawable.createFromPath("res/drawable-v24/ah.png"));
         }
 
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
-        //desactivar boton apuesta
-        //desactivar dividir
-        //activar boton doblar
-        //activar boton rendirse
-
         if(!partidaTerminada(valorCartasCrupie, valorCartasJugador)){
             int contador = 0;
 
-
-            while(!partidaTerminada(valorCartasCrupie,valorCartasJugador) || !finPartida){
+            //while(!partidaTerminada(valorCartasCrupie,valorCartasJugador) || !finPartida){
 
                 if(contador == 0){
                     if(comprobarSiSonIguales(cartasRepartidasJugador)){
-                        //Activar boton separar
+                        imgBtnSeparar.setVisibility(View.VISIBLE);
                         imgBtnSeparar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -193,25 +178,30 @@ public class Juego extends AppCompatActivity {
                                 //Repartir dos cartas mas
                                 //Dar carta a crupie
                                 //Desactivar boton separar
+                                imgBtnSeparar.setVisibility(View.INVISIBLE);
                             }
                         });
                     }
 
+                    imgBtnDoblar.setVisibility(View.VISIBLE);
                     imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             //Restar creditos jugador
                             //Repartir cartas crupie y jugador
                             //Desactivar boton doblar
+                            imgBtnDoblar.setVisibility(View.VISIBLE);
 
                             if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
                                 //reiniciarPartida();
                             }
                         }
                     });
+
+                    contador ++;
                 }
 
-
+                    imgBtnPlantarse.setVisibility(View.VISIBLE);
                     imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -220,32 +210,34 @@ public class Juego extends AppCompatActivity {
                     });
 
 
-
+                    imgBtnPedirCarta.setVisibility(View.VISIBLE);
                     imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             //Repartir cartas crupie y jugador
 
                             if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
-                                if((valorCartasCrupie > valorCartasJugador) && valorCartasCrupie < 22){
-                                    //reiniciarPartida(1);
-                                }else{
-                                    //reiniciarPartida(0);
-                                }
 
-                                finPartida = true;
+                                determinarGanador(valorCartasCrupie, valorCartasJugador);
+
+                                //finPartida = true;
                             }
                         }
                     });
 
-                    contador ++;
-                }
+                //}
             }else{
-                //reiniciarPartida();
+                determinarGanador(valorCartasCrupie, valorCartasJugador);
         }
     }
 
-
+    public void determinarGanador(int valorCartasCrupie, int valorCartasJugador){
+        if((valorCartasCrupie > valorCartasJugador) && valorCartasCrupie < 22){
+            reiniciarPartida(0);
+        }else{
+            reiniciarPartida(1);
+        }
+    }
 
 
     private boolean partidaTerminada(int valorCartasCrupie, int valorCartasJugador) {
@@ -253,24 +245,36 @@ public class Juego extends AppCompatActivity {
 
         if(valorCartasCrupie == 21 || valorCartasJugador == 21){
             if(valorCartasCrupie == 21){
-                //gana curpie
-                //reiniciarPartida(0);
+               // reiniciarPartida(0);
             }else{
-                //gana jugador
-                //reiniciarPartida(1);
+               // reiniciarPartida(1);
             }
 
             finPartida = true;
-            //Toast din partida
         }
 
         return finPartida;
     }
 
+    public void reiniciarPartida(int codigo){
+        String mensaje = "";
+
+        switch(codigo){
+            case 0:
+                mensaje = "Gana el crupie";
+                break;
+            case 1:
+                mensaje = "Gana el jugador";
+                break;
+        }
+
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+    }
+
     private boolean comprobarSiSonIguales(List<Carta> cartas) {
         boolean exito = false;
 
-        if(cartas.get(0) == cartas.get(1)){
+        if(cartas.get(0).getValor().getNumVal() == cartas.get(1).getValor().getNumVal()){
             exito = true;
         }
 
@@ -280,6 +284,10 @@ public class Juego extends AppCompatActivity {
     public int calcularValorCartas(List<Carta> cartas){
         int valor = 0;
 
+        for(int i=0 ; i<cartas.size(); i++){
+            valor += cartas.get(i).getValor().getNumVal();
+        }
+/*
        for(int i=0; i<cartas.size();i++){
            switch(cartas.get(i).getValor()){
                case TWO:
@@ -317,7 +325,7 @@ public class Juego extends AppCompatActivity {
                    break;
            }
        }
-
+*/
         return valor;
     }
 }
