@@ -11,29 +11,129 @@
         android:id="@+id/imageViewCarta1"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginStart="132dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/carta_reverso"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        tools:layout_editor_absoluteX="137dp" />
 
     <ImageView
         android:id="@+id/imageViewCarta2"
         android:layout_width="87dp"
         android:layout_height="130dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="143dp"
         android:background="@drawable/carta_reverso"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        tools:layout_editor_absoluteX="182dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta5"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        tools:layout_editor_absoluteX="92dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta6"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta7"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta8"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        tools:layout_editor_absoluteX="224dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta9"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        tools:layout_editor_absoluteX="269dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta10"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta17"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta16"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
+        tools:layout_editor_absoluteX="276dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta15"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
+        tools:layout_editor_absoluteX="229dp" />
 
     <ImageView
         android:id="@+id/imageViewCarta3"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginEnd="143dp"
         android:background="@drawable/carta_reverso"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
+        tools:layout_editor_absoluteX="181dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta4"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonPedir"
+        tools:layout_editor_absoluteX="137dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta11"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
+        tools:layout_editor_absoluteX="93dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta13"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCarta14"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageViewCarta4" />
 
     <ImageView
@@ -46,16 +146,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cajafichas" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta4"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginBottom="55dp"
-        android:background="@drawable/carta_reverso"
-        app:layout_constraintBottom_toTopOf="@+id/imageButtonPedir"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnApostar"

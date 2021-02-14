@@ -65,8 +65,8 @@ public class Juego extends AppCompatActivity {
         imgBtnSeparar.setVisibility(View.INVISIBLE);
 
         // TODO: añadir fondo vacío
-        cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1),findViewById(R.id.imageViewCarta2)));
-        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4)));
+        cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1),findViewById(R.id.imageViewCarta2), findViewById(R.id.imageViewCarta5), findViewById(R.id.imageViewCarta6), findViewById(R.id.imageViewCarta7), findViewById(R.id.imageViewCarta8), findViewById(R.id.imageViewCarta9), findViewById(R.id.imageViewCarta10)));
+        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4), findViewById(R.id.imageViewCarta11), findViewById(R.id.imageViewCarta13), findViewById(R.id.imageViewCarta14), findViewById(R.id.imageViewCarta15), findViewById(R.id.imageViewCarta16), findViewById(R.id.imageViewCarta17)));
 
         etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
 
