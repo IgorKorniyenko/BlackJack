@@ -64,6 +64,7 @@ public class Juego extends AppCompatActivity {
         imgBtnPlantarse.setVisibility(View.INVISIBLE);
         imgBtnSeparar.setVisibility(View.INVISIBLE);
 
+        // TODO: añadir fondo vacío
         cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1),findViewById(R.id.imageViewCarta2)));
         cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4)));
 
@@ -88,7 +89,9 @@ public class Juego extends AppCompatActivity {
 
                                 twApuesta.setText("Apuesta:" + etCantidadApuesta.getText().toString());
                                 cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
-                                //Restar creditos jugador
+
+
+                                // TODO: Restar creditos jugador
 
 
                                 if(cantApostada > 0){
@@ -96,8 +99,7 @@ public class Juego extends AppCompatActivity {
                                 }
 
                                 dialog.dismiss();
-                                //Hecho
-                                //Código para guardar la apuesta que ha hecho el jugador
+
                     }
                 })
                         .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
@@ -109,8 +111,6 @@ public class Juego extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
 
                 dialog.show();
-
-
             }
         });
 
@@ -150,7 +150,7 @@ public class Juego extends AppCompatActivity {
 
 
             cartasRepartidasCrupie.add(b.siguienteCarta());
-
+            // JORGE
             pathCarta = "../../../../res/drawable-v24/" +
                     cartasRepartidasCrupie.get(i).getValor().toString().toLowerCase() +
                     cartasRepartidasCrupie.get(i).getPalo().toString().toLowerCase() + ".png";
@@ -166,8 +166,6 @@ public class Juego extends AppCompatActivity {
         if(!partidaTerminada(valorCartasCrupie, valorCartasJugador)){
             int contador = 0;
 
-            //while(!partidaTerminada(valorCartasCrupie,valorCartasJugador) || !finPartida){
-
                 if(contador == 0){
                     if(comprobarSiSonIguales(cartasRepartidasJugador)){
                         imgBtnSeparar.setVisibility(View.VISIBLE);
@@ -177,7 +175,7 @@ public class Juego extends AppCompatActivity {
                                 //Restar creditos
                                 //Repartir dos cartas mas
                                 //Dar carta a crupie
-                                //Desactivar boton separar
+
                                 imgBtnSeparar.setVisibility(View.INVISIBLE);
                             }
                         });
@@ -189,11 +187,11 @@ public class Juego extends AppCompatActivity {
                         public void onClick(View v) {
                             //Restar creditos jugador
                             //Repartir cartas crupie y jugador
-                            //Desactivar boton doblar
-                            imgBtnDoblar.setVisibility(View.VISIBLE);
+
+                            imgBtnDoblar.setVisibility(View.INVISIBLE);
 
                             if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
-                                //reiniciarPartida();
+                                determinarGanador(valorCartasCrupie, valorCartasJugador);
                             }
                         }
                     });
@@ -205,7 +203,8 @@ public class Juego extends AppCompatActivity {
                     imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //reiniciarPartida(2);
+                            //pedirCartarCrupier
+                            determinarGanador(valorCartasCrupie, valorCartasJugador);
                         }
                     });
 
@@ -220,12 +219,11 @@ public class Juego extends AppCompatActivity {
 
                                 determinarGanador(valorCartasCrupie, valorCartasJugador);
 
-                                //finPartida = true;
                             }
                         }
                     });
 
-                //}
+
             }else{
                 determinarGanador(valorCartasCrupie, valorCartasJugador);
         }
@@ -239,7 +237,7 @@ public class Juego extends AppCompatActivity {
         }
     }
 
-
+    // TODO: revisar
     private boolean partidaTerminada(int valorCartasCrupie, int valorCartasJugador) {
         boolean finPartida = false;
 
@@ -287,45 +285,7 @@ public class Juego extends AppCompatActivity {
         for(int i=0 ; i<cartas.size(); i++){
             valor += cartas.get(i).getValor().getNumVal();
         }
-/*
-       for(int i=0; i<cartas.size();i++){
-           switch(cartas.get(i).getValor()){
-               case TWO:
-                   valor +=2;
-                   break;
-               case THREE:
-                   valor +=3;
-                   break;
-               case FOUR:
-                   valor +=4;
-                   break;
-               case FIVE:
-                   valor +=5;
-                   break;
-               case SIX:
-                   valor +=6;
-                   break;
-               case SEVEN:
-                   valor +=7;
-                   break;
-               case EIGHT:
-                   valor +=8;
-                   break;
-               case NINE:
-                   valor +=9;
-                   break;
-               case TEN:
-               case J:
-               case Q:
-               case K:
-                   valor +=10;
-                   break;
-               case A:
-                   valor +=11;
-                   break;
-           }
-       }
-*/
+
         return valor;
     }
 }

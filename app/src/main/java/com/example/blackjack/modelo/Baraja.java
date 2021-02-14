@@ -108,7 +108,4 @@ public class Baraja {
 			System.out.println("No hay cartas en la baraja");
 		}
 	}
-	
-	
-	
 }

@@ -59,8 +59,5 @@ public class Carta {
 	public String toString() {
 		return valor + " de " + palo;
 	}
-	
-	
-	
-	
+
 }
