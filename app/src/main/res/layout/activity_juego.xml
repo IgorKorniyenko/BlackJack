@@ -11,9 +11,8 @@
         android:id="@+id/imageViewCarta1"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/carta_reverso"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta2"
         tools:layout_editor_absoluteX="137dp" />
 
     <ImageView
@@ -29,16 +28,14 @@
         android:id="@+id/imageViewCarta5"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta1"
         tools:layout_editor_absoluteX="92dp" />
 
     <ImageView
         android:id="@+id/imageViewCarta6"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta5"
         tools:layout_editor_absoluteX="50dp" />
 
     <ImageView
@@ -46,34 +43,30 @@
         android:layout_width="87dp"
         android:layout_height="130dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta6" />
 
     <ImageView
         android:id="@+id/imageViewCarta8"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta2"
         tools:layout_editor_absoluteX="224dp" />
 
     <ImageView
         android:id="@+id/imageViewCarta9"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta2"
         tools:layout_editor_absoluteX="269dp" />
 
     <ImageView
         android:id="@+id/imageViewCarta10"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewCarta8" />
 
     <ImageView
         android:id="@+id/imageViewCarta17"

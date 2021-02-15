@@ -11,6 +11,8 @@
     <string name="btnApostar">Apostar</string>
     <string name="tvApuesta">Apuesta: 0</string>
     <string name="titleDialog">¿Cuánto quieres apostar?</string>
+    <string name="toastGanaCrupier">Gana el crupier</string>
+    <string name="toastGanaJugador">Gana el jugador</string>
 
     <!-- Menu -->
     <string name="btnJugar">Jugar</string>

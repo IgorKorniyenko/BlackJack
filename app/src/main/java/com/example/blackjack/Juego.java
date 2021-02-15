@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.example.blackjack.modelo.Baraja;
 import com.example.blackjack.modelo.Carta;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +44,6 @@ public class Juego extends AppCompatActivity {
     private List<ImageView> cartasJugador = new ArrayList<>();
     private List<ImageView> cartasCrupie = new ArrayList<>();
     private int cantApostada;
-    boolean finPartida = false;
 
     private EditText etCantidadApuesta;
 
@@ -65,8 +66,14 @@ public class Juego extends AppCompatActivity {
         imgBtnSeparar.setVisibility(View.INVISIBLE);
 
         // TODO: añadir fondo vacío
-        cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1),findViewById(R.id.imageViewCarta2), findViewById(R.id.imageViewCarta5), findViewById(R.id.imageViewCarta6), findViewById(R.id.imageViewCarta7), findViewById(R.id.imageViewCarta8), findViewById(R.id.imageViewCarta9), findViewById(R.id.imageViewCarta10)));
-        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4), findViewById(R.id.imageViewCarta11), findViewById(R.id.imageViewCarta13), findViewById(R.id.imageViewCarta14), findViewById(R.id.imageViewCarta15), findViewById(R.id.imageViewCarta16), findViewById(R.id.imageViewCarta17)));
+        cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1), findViewById(R.id.imageViewCarta2),
+                                            findViewById(R.id.imageViewCarta5), findViewById(R.id.imageViewCarta6),
+                                            findViewById(R.id.imageViewCarta7), findViewById(R.id.imageViewCarta8),
+                                            findViewById(R.id.imageViewCarta9), findViewById(R.id.imageViewCarta10)));
+        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4),
+                                            findViewById(R.id.imageViewCarta11), findViewById(R.id.imageViewCarta13),
+                                            findViewById(R.id.imageViewCarta14), findViewById(R.id.imageViewCarta15),
+                                            findViewById(R.id.imageViewCarta16), findViewById(R.id.imageViewCarta17)));
 
         etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
 
@@ -147,6 +154,14 @@ public class Juego extends AppCompatActivity {
             cartasJugador.get(i).setBackground(Drawable.createFromPath(pathCarta));
             cartasJugador.get(i).setBackgroundResource(R.drawable.eightd);
 
+
+
+
+            // PRUEBA PARA CARGAR LAS IMÁGENES DE OTRA FORMA
+            String valor = cartasRepartidasJugador.get(i).getValor().toString().toLowerCase();
+            String palo = cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase();
+            int dId = this.getResources().getIdentifier(valor + palo + ".png", "drawable", this.getPackageName());
+            cartasJugador.get(i).setImageDrawable(getResources().getDrawable(dId, getApplicationContext().getTheme()));
 
 
             cartasRepartidasCrupie.add(b.siguienteCarta());
@@ -259,10 +274,10 @@ public class Juego extends AppCompatActivity {
 
         switch(codigo){
             case 0:
-                mensaje = "Gana el crupie";
+                mensaje = String.valueOf(R.string.toastGanaCrupier);
                 break;
             case 1:
-                mensaje = "Gana el jugador";
+                mensaje = String.valueOf(R.string.toastGanaJugador);
                 break;
         }
 
