@@ -3,6 +3,7 @@ package com.example.blackjack;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -147,32 +148,20 @@ public class Juego extends AppCompatActivity {
 
         for(int i=0; i<2; i++){
             cartasRepartidasJugador.add(b.siguienteCarta());
-            pathCarta = "../../../../res/drawable-v24/" +
+            //pathCarta = "../../res/drawable-v24/" +
+            pathCarta = "C:\\Users\\Cris\\AndroidStudioProjects\\ProyectoBlackjack\\app\\src\\main\\res\\drawable-v24\\" +
                     cartasRepartidasJugador.get(i).getValor().toString().toLowerCase() +
                     cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase() + ".png";
 
             cartasJugador.get(i).setBackground(Drawable.createFromPath(pathCarta));
-            cartasJugador.get(i).setBackgroundResource(R.drawable.eightd);
-
-
-
-
-            // PRUEBA PARA CARGAR LAS IMÁGENES DE OTRA FORMA
-            String valor = cartasRepartidasJugador.get(i).getValor().toString().toLowerCase();
-            String palo = cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase();
-            int dId = this.getResources().getIdentifier(valor + palo + ".png", "drawable", this.getPackageName());
-            cartasJugador.get(i).setImageDrawable(getResources().getDrawable(dId, getApplicationContext().getTheme()));
 
 
             cartasRepartidasCrupie.add(b.siguienteCarta());
-            // JORGE
-            pathCarta = "../../../../res/drawable-v24/" +
+            pathCarta = "../../res/drawable-v24/" +
                     cartasRepartidasCrupie.get(i).getValor().toString().toLowerCase() +
                     cartasRepartidasCrupie.get(i).getPalo().toString().toLowerCase() + ".png";
 
             cartasCrupie.get(i).setBackground(Drawable.createFromPath(pathCarta));
-            cartasCrupie.get(i).setBackgroundResource(R.drawable.ac);
-            //cartasCrupie.get(i).setBackground(Drawable.createFromPath("res/drawable-v24/ah.png"));
         }
 
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
@@ -201,7 +190,20 @@ public class Juego extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             //Restar creditos jugador
-                            //Repartir cartas crupie y jugador
+
+                            cartasRepartidasJugador.add(b.siguienteCarta());
+                            String pathCarta = "../../res/drawable-v24/" +
+                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getValor().toString().toLowerCase() +
+                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getPalo().toString().toLowerCase() + ".png";
+
+                            cartasJugador.get(cartasJugador.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
+
+                            cartasRepartidasCrupie.add(b.siguienteCarta());
+                            pathCarta = "../../res/drawable-v24/" +
+                                    cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getValor().toString().toLowerCase() +
+                                    cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getPalo().toString().toLowerCase() + ".png";
+
+                            cartasCrupie.get(cartasRepartidasCrupie.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
 
                             imgBtnDoblar.setVisibility(View.INVISIBLE);
 
@@ -218,7 +220,7 @@ public class Juego extends AppCompatActivity {
                     imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //pedirCartarCrupier
+                            //pedirCartarCrupier si tiene menos de 17
                             determinarGanador(valorCartasCrupie, valorCartasJugador);
                         }
                     });
@@ -229,6 +231,22 @@ public class Juego extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             //Repartir cartas crupie y jugador
+
+                            cartasRepartidasJugador.add(b.siguienteCarta());
+                            String pathCarta = "../../res/drawable-v24/" +
+                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getValor().toString().toLowerCase() +
+                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getPalo().toString().toLowerCase() + ".png";
+
+                            cartasJugador.get(cartasJugador.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
+
+                            if(valorCartasCrupie < 17) {
+                                cartasRepartidasCrupie.add(b.siguienteCarta());
+                                pathCarta = "../../res/drawable-v24/" +
+                                        cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getValor().toString().toLowerCase() +
+                                        cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getPalo().toString().toLowerCase() + ".png";
+
+                                cartasCrupie.get(cartasRepartidasCrupie.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
+                            }
 
                             if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
 
