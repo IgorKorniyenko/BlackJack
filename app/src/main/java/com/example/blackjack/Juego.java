@@ -34,6 +34,9 @@ public class Juego extends AppCompatActivity {
     private Context context = this;
     private TextView twApuesta;
 
+    private TextView twPuntosJugador;
+    private TextView twPuntosCrupie;
+
     private int contadorJugador = 0;
     private int contadorCrupie = 0;
 
@@ -60,6 +63,9 @@ public class Juego extends AppCompatActivity {
         imgBtnPedirCarta.setVisibility(View.INVISIBLE);
         imgBtnPlantarse.setVisibility(View.INVISIBLE);
         imgBtnSeparar.setVisibility(View.INVISIBLE);
+
+        twPuntosJugador = findViewById(R.id.puntosJugador);
+        twPuntosCrupie = findViewById(R.id.puntosCrupier);
 
         // TODO: añadir fondo vacío
         cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCartaCrupie1), findViewById(R.id.imageViewCartaCrupie2),
@@ -173,10 +179,13 @@ public class Juego extends AppCompatActivity {
              */
         }
 
+
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
-        System.err.println("" + valorCartasCrupie +"" + ""+valorCartasJugador);
+        twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
+        twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
+
 
         if(!partidaTerminada(valorCartasCrupie, valorCartasJugador)){
             int contador = 0;
@@ -210,6 +219,8 @@ public class Juego extends AppCompatActivity {
 
                         mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
 
+                        twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
+                        twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
 
                             /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
@@ -257,6 +268,9 @@ public class Juego extends AppCompatActivity {
                             while(calcularValorCartas(cartasRepartidasCrupie) < 17){
                                 mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
                             }
+                            twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
+                            twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
+
 
                             //partidaTerminada(valorCartasCrupie, valorCartasJugador);
                             determinarGanador(valorCartasCrupie, valorCartasJugador);
@@ -276,6 +290,8 @@ public class Juego extends AppCompatActivity {
 
                             mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
 
+                            twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
+                            twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
 
                             /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
