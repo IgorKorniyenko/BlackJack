@@ -8,126 +8,152 @@
     tools:context=".Juego">
 
     <ImageView
-        android:id="@+id/imageViewCarta1"
+        android:id="@+id/imageViewCartaCrupie1"
         android:layout_width="87dp"
         android:layout_height="130dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/carta_reverso"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta2"
-        tools:layout_editor_absoluteX="137dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta2"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/carta_reverso"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"
-        tools:layout_editor_absoluteX="182dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta5"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta1"
-        tools:layout_editor_absoluteX="92dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta6"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta5"
-        tools:layout_editor_absoluteX="50dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta7"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta6" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie3" />
 
     <ImageView
-        android:id="@+id/imageViewCarta8"
+        android:id="@+id/imageViewCartaCrupie3"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta2"
-        tools:layout_editor_absoluteX="224dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta9"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta2"
-        tools:layout_editor_absoluteX="269dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta10"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta8" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta17"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta16"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
-        tools:layout_editor_absoluteX="276dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta15"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
-        tools:layout_editor_absoluteX="229dp" />
-
-    <ImageView
-        android:id="@+id/imageViewCarta3"
-        android:layout_width="87dp"
-        android:layout_height="130dp"
+        android:layout_marginStart="28dp"
         android:background="@drawable/carta_reverso"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
-        tools:layout_editor_absoluteX="181dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageViewCartaCrupie1"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie5" />
 
     <ImageView
-        android:id="@+id/imageViewCarta4"
+        android:id="@+id/imageViewCartaCrupie5"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="32dp"
         android:background="@drawable/carta_reverso"
-        app:layout_constraintBottom_toTopOf="@+id/imageButtonPedir"
-        tools:layout_editor_absoluteX="137dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageViewCartaCrupie3"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie7" />
 
     <ImageView
-        android:id="@+id/imageViewCarta11"
+        android:id="@+id/imageViewCartaCrupie7"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
-        tools:layout_editor_absoluteX="93dp" />
+        android:layout_marginStart="16dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaCrupie1"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie8" />
 
     <ImageView
-        android:id="@+id/imageViewCarta13"
+        android:id="@+id/imageViewCartaCrupie8"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4"
-        tools:layout_editor_absoluteX="50dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaCrupie3"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
 
     <ImageView
-        android:id="@+id/imageViewCarta14"
+        android:id="@+id/imageViewCartaCrupie6"
         android:layout_width="87dp"
         android:layout_height="130dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="48dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaCrupie5"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie8" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaCrupie4"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="52dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaCrupie7"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie6" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaCrupie2"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaCrupie6"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaCrupie4" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador1"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/carta_reverso"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCarta4" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador3" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador3"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="28dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCartaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador5" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador5"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="44dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCartaJugador3"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador7" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador7"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="28dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador8" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador8"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonPlantarse"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaJugador3" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador6"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="44dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaJugador5"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador8" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador4"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="44dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintStart_toEndOf="@+id/imageViewCartaJugador7"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador6" />
+
+    <ImageView
+        android:id="@+id/imageViewCartaJugador2"
+        android:layout_width="87dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/carta_reverso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCartaJugador4" />
 
     <ImageView
         android:id="@+id/imageViewFichas"
@@ -214,7 +240,7 @@
         android:textAlignment="center"
         android:textColor="#FF9800"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageViewCarta3"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewCartaJugador2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewFichas"

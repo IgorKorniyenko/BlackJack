@@ -13,6 +13,7 @@
     <string name="titleDialog">¿Cuánto quieres apostar?</string>
     <string name="toastGanaCrupier">Gana el crupier</string>
     <string name="toastGanaJugador">Gana el jugador</string>
+    <string name="toastEmpate">Empate</string>
 
     <!-- Menu -->
     <string name="btnJugar">Jugar</string>

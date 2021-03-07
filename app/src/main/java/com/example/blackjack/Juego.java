@@ -3,13 +3,9 @@ package com.example.blackjack;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +19,9 @@ import android.widget.Toast;
 import com.example.blackjack.modelo.Baraja;
 import com.example.blackjack.modelo.Carta;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.example.blackjack.modelo.Palos.C;
 
 public class Juego extends AppCompatActivity {
 
@@ -41,6 +33,9 @@ public class Juego extends AppCompatActivity {
     private ImageButton imgBtnSeparar;
     private Context context = this;
     private TextView twApuesta;
+
+    private int contadorJugador = 0;
+    private int contadorCrupie = 0;
 
     private List<ImageView> cartasJugador = new ArrayList<>();
     private List<ImageView> cartasCrupie = new ArrayList<>();
@@ -67,14 +62,21 @@ public class Juego extends AppCompatActivity {
         imgBtnSeparar.setVisibility(View.INVISIBLE);
 
         // TODO: añadir fondo vacío
-        cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCarta1), findViewById(R.id.imageViewCarta2),
-                                            findViewById(R.id.imageViewCarta5), findViewById(R.id.imageViewCarta6),
-                                            findViewById(R.id.imageViewCarta7), findViewById(R.id.imageViewCarta8),
-                                            findViewById(R.id.imageViewCarta9), findViewById(R.id.imageViewCarta10)));
-        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCarta3),findViewById(R.id.imageViewCarta4),
-                                            findViewById(R.id.imageViewCarta11), findViewById(R.id.imageViewCarta13),
-                                            findViewById(R.id.imageViewCarta14), findViewById(R.id.imageViewCarta15),
-                                            findViewById(R.id.imageViewCarta16), findViewById(R.id.imageViewCarta17)));
+        cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCartaCrupie1), findViewById(R.id.imageViewCartaCrupie2),
+                                            findViewById(R.id.imageViewCartaCrupie3), findViewById(R.id.imageViewCartaCrupie4),
+                                            findViewById(R.id.imageViewCartaCrupie5), findViewById(R.id.imageViewCartaCrupie6),
+                                            findViewById(R.id.imageViewCartaCrupie7), findViewById(R.id.imageViewCartaCrupie8)));
+
+        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCartaJugador1),findViewById(R.id.imageViewCartaJugador2),
+                                            findViewById(R.id.imageViewCartaJugador3), findViewById(R.id.imageViewCartaJugador4),
+                                            findViewById(R.id.imageViewCartaJugador5), findViewById(R.id.imageViewCartaJugador6),
+                                            findViewById(R.id.imageViewCartaJugador7), findViewById(R.id.imageViewCartaJugador8)));
+
+        //Desactivo todas las cartas menos las principales
+        for (int i=0 ; i<6; i++){
+            cartasCrupie.get(i).setVisibility(View.INVISIBLE);
+            cartasJugador.get(i).setVisibility(View.INVISIBLE);
+        }
 
         etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
 
@@ -143,11 +145,16 @@ public class Juego extends AppCompatActivity {
         List<Carta> cartasRepartidasJugador = new ArrayList<>();
         List<Carta> cartasRepartidasCrupie = new ArrayList<>();
 
-        Baraja b = new Baraja();
-        b.barajar();
+        Baraja baraja = new Baraja();
+        baraja.barajar();
 
         for(int i=0; i<2; i++){
-            cartasRepartidasJugador.add(b.siguienteCarta());
+
+            mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
+            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+
+            /*
+            cartasRepartidasJugador.add(baraja.siguienteCarta());
             //pathCarta = "../../res/drawable-v24/" +
             pathCarta = "C:\\Users\\Cris\\AndroidStudioProjects\\ProyectoBlackjack\\app\\src\\main\\res\\drawable-v24\\" +
                     cartasRepartidasJugador.get(i).getValor().toString().toLowerCase() +
@@ -156,21 +163,26 @@ public class Juego extends AppCompatActivity {
             cartasJugador.get(i).setBackground(Drawable.createFromPath(pathCarta));
 
 
-            cartasRepartidasCrupie.add(b.siguienteCarta());
+            cartasRepartidasCrupie.add(baraja.siguienteCarta());
             pathCarta = "../../res/drawable-v24/" +
                     cartasRepartidasCrupie.get(i).getValor().toString().toLowerCase() +
                     cartasRepartidasCrupie.get(i).getPalo().toString().toLowerCase() + ".png";
 
             cartasCrupie.get(i).setBackground(Drawable.createFromPath(pathCarta));
+
+             */
         }
 
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
+        System.err.println("" + valorCartasCrupie +"" + ""+valorCartasJugador);
+
         if(!partidaTerminada(valorCartasCrupie, valorCartasJugador)){
             int contador = 0;
 
-                if(contador == 0){
+            /* No vamos a separar (luego borramos esta parte)
+
                     if(comprobarSiSonIguales(cartasRepartidasJugador)){
                         imgBtnSeparar.setVisibility(View.VISIBLE);
                         imgBtnSeparar.setOnClickListener(new View.OnClickListener() {
@@ -184,13 +196,22 @@ public class Juego extends AppCompatActivity {
                             }
                         });
                     }
+        */
+            if(contador == 0) {
+                imgBtnDoblar.setVisibility(View.VISIBLE);
+                imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Restar creditos jugador
 
-                    imgBtnDoblar.setVisibility(View.VISIBLE);
-                    imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //Restar creditos jugador
+                        if(valorCartasCrupie < 17){
+                            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                        }
 
+                        mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
+
+
+                            /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
                             String pathCarta = "../../res/drawable-v24/" +
                                     cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getValor().toString().toLowerCase() +
@@ -205,22 +226,39 @@ public class Juego extends AppCompatActivity {
 
                             cartasCrupie.get(cartasRepartidasCrupie.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
 
-                            imgBtnDoblar.setVisibility(View.INVISIBLE);
 
-                            if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
-                                determinarGanador(valorCartasCrupie, valorCartasJugador);
-                            }
+                             */
+                        imgBtnDoblar.setVisibility(View.INVISIBLE);
+
+                        //Solo llamo a esta funcion por que ya pos mi misma llama a reiniciar juego
+                        //Si se cumplen las condiciones( la de determinar ganador sobra)
+                        partidaTerminada(valorCartasCrupie, valorCartasJugador);
+
+                /*
+                        if (partidaTerminada(valorCartasCrupie, valorCartasJugador)) {
+                            determinarGanador(valorCartasCrupie, valorCartasJugador);
                         }
-                    });
 
-                    contador ++;
-                }
+                 */
+                    }
+                });
+
+                contador++;
+            }
 
                     imgBtnPlantarse.setVisibility(View.VISIBLE);
                     imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //pedirCartarCrupier si tiene menos de 17
+
+                            imgBtnPlantarse.setVisibility(View.INVISIBLE);
+                            imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+
+                            while(calcularValorCartas(cartasRepartidasCrupie) < 17){
+                                mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                            }
+
+                            //partidaTerminada(valorCartasCrupie, valorCartasJugador);
                             determinarGanador(valorCartasCrupie, valorCartasJugador);
                         }
                     });
@@ -232,6 +270,14 @@ public class Juego extends AppCompatActivity {
                         public void onClick(View v) {
                             //Repartir cartas crupie y jugador
 
+                            if(calcularValorCartas(cartasRepartidasCrupie) < 17){
+                                mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                            }
+
+                            mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
+
+
+                            /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
                             String pathCarta = "../../res/drawable-v24/" +
                                     cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getValor().toString().toLowerCase() +
@@ -248,11 +294,18 @@ public class Juego extends AppCompatActivity {
                                 cartasCrupie.get(cartasRepartidasCrupie.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
                             }
 
-                            if(partidaTerminada(valorCartasCrupie,valorCartasJugador)){
+                             */
 
-                                determinarGanador(valorCartasCrupie, valorCartasJugador);
+                            //Solo llamo a esta funcion por que ya pos mi misma llama a reiniciar juego
+                            //Si se cumplen las condiciones( la de determinar ganador sobra)
+                            partidaTerminada(valorCartasCrupie, valorCartasJugador);
 
-                            }
+                /*
+                        if (partidaTerminada(valorCartasCrupie, valorCartasJugador)) {
+                            determinarGanador(valorCartasCrupie, valorCartasJugador);
+                        }
+
+                 */
                         }
                     });
 
@@ -262,23 +315,65 @@ public class Juego extends AppCompatActivity {
         }
     }
 
+    private void mostrarSiguienteCarta(List<Carta> cartasRepartidas, Baraja baraja, int quien) {
+        int posicion = 0;
+        cartasRepartidas.add(baraja.siguienteCarta());
+        //pathCarta = "../../res/drawable-v24/" +
+        String pathCarta = "C:\\Users\\Cris\\AndroidStudioProjects\\ProyectoBlackjack\\app\\src\\main\\res\\drawable-v24\\" +
+                cartasRepartidas.get(cartasRepartidas.size()-1).getValor().toString().toLowerCase() +
+                cartasRepartidas.get(cartasRepartidas.size()-1).getPalo().toString().toLowerCase() + ".png";
+
+
+
+        if(quien == 1){
+            cartasJugador.get(contadorJugador).setVisibility(View.VISIBLE);
+            cartasJugador.get(contadorJugador).setBackground(Drawable.createFromPath(pathCarta));
+
+            contadorJugador ++;
+        }else{
+            cartasCrupie.get(contadorCrupie).setVisibility(View.VISIBLE);
+            cartasCrupie.get(contadorCrupie).setBackground(Drawable.createFromPath(pathCarta));
+
+            contadorCrupie ++;
+        }
+
+
+    }
+
     public void determinarGanador(int valorCartasCrupie, int valorCartasJugador){
         if((valorCartasCrupie > valorCartasJugador) && valorCartasCrupie < 22){
             reiniciarPartida(0);
-        }else{
+        }else if((valorCartasCrupie < valorCartasJugador) && valorCartasJugador < 22){
             reiniciarPartida(1);
+        }else if(valorCartasCrupie == valorCartasJugador){
+            reiniciarPartida(2);
+        }else{
+            if(valorCartasJugador < 22 && valorCartasJugador < valorCartasCrupie){
+                reiniciarPartida(1);
+            }else if (valorCartasCrupie < 22 && valorCartasCrupie < valorCartasJugador){
+                reiniciarPartida(0);
+            }else{
+                reiniciarPartida(2);
+            }
         }
     }
 
-    // TODO: revisar
+    // TODO: revisar ( mofificado, ya funciona en todos los casos)
     private boolean partidaTerminada(int valorCartasCrupie, int valorCartasJugador) {
         boolean finPartida = false;
 
-        if(valorCartasCrupie == 21 || valorCartasJugador == 21){
-            if(valorCartasCrupie == 21){
-               // reiniciarPartida(0);
+        if(valorCartasCrupie >= 21 || valorCartasJugador >= 21){
+
+            if(valorCartasCrupie > 21){
+                reiniciarPartida(1);
             }else{
-               // reiniciarPartida(1);
+                if(valorCartasJugador > 21){
+                    reiniciarPartida(0);
+                }else if(valorCartasJugador == 21){
+                    reiniciarPartida(1);
+                }else{
+                    reiniciarPartida(0);
+                }
             }
 
             finPartida = true;
@@ -290,12 +385,20 @@ public class Juego extends AppCompatActivity {
     public void reiniciarPartida(int codigo){
         String mensaje = "";
 
+        imgBtnDoblar.setVisibility(View.INVISIBLE);
+        imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+        imgBtnPlantarse.setVisibility(View.INVISIBLE);
+        imgBtnSeparar.setVisibility(View.INVISIBLE);
+
         switch(codigo){
             case 0:
                 mensaje = String.valueOf(R.string.toastGanaCrupier);
                 break;
             case 1:
                 mensaje = String.valueOf(R.string.toastGanaJugador);
+                break;
+            case 2:
+                mensaje = String.valueOf(R.string.toastEmpate);
                 break;
         }
 
