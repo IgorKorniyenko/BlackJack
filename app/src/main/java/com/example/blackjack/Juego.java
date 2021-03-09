@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +45,7 @@ public class Juego extends AppCompatActivity {
     private List<ImageView> cartasJugador = new ArrayList<>();
     private List<ImageView> cartasCrupie = new ArrayList<>();
     private int cantApostada;
+    private boolean partidaFinalizada;
 
     private EditText etCantidadApuesta;
 
@@ -69,17 +72,17 @@ public class Juego extends AppCompatActivity {
 
         // TODO: añadir fondo vacío
         cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCartaCrupie1), findViewById(R.id.imageViewCartaCrupie2),
-                                            findViewById(R.id.imageViewCartaCrupie3), findViewById(R.id.imageViewCartaCrupie4),
-                                            findViewById(R.id.imageViewCartaCrupie5), findViewById(R.id.imageViewCartaCrupie6),
-                                            findViewById(R.id.imageViewCartaCrupie7), findViewById(R.id.imageViewCartaCrupie8)));
+                findViewById(R.id.imageViewCartaCrupie3), findViewById(R.id.imageViewCartaCrupie4),
+                findViewById(R.id.imageViewCartaCrupie5), findViewById(R.id.imageViewCartaCrupie6),
+                findViewById(R.id.imageViewCartaCrupie7), findViewById(R.id.imageViewCartaCrupie8)));
 
-        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCartaJugador1),findViewById(R.id.imageViewCartaJugador2),
-                                            findViewById(R.id.imageViewCartaJugador3), findViewById(R.id.imageViewCartaJugador4),
-                                            findViewById(R.id.imageViewCartaJugador5), findViewById(R.id.imageViewCartaJugador6),
-                                            findViewById(R.id.imageViewCartaJugador7), findViewById(R.id.imageViewCartaJugador8)));
+        cartasJugador.addAll(Arrays.asList(findViewById(R.id.imageViewCartaJugador1), findViewById(R.id.imageViewCartaJugador2),
+                findViewById(R.id.imageViewCartaJugador3), findViewById(R.id.imageViewCartaJugador4),
+                findViewById(R.id.imageViewCartaJugador5), findViewById(R.id.imageViewCartaJugador6),
+                findViewById(R.id.imageViewCartaJugador7), findViewById(R.id.imageViewCartaJugador8)));
 
         //Desactivo todas las cartas menos las principales
-        for (int i=0 ; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             cartasCrupie.get(i).setVisibility(View.INVISIBLE);
             cartasJugador.get(i).setVisibility(View.INVISIBLE);
         }
@@ -95,7 +98,7 @@ public class Juego extends AppCompatActivity {
 
                 builder.setTitle(R.string.titleDialog);
 
-                View myView = LayoutInflater.from(context).inflate(R.layout.dialog_apostar,null);
+                View myView = LayoutInflater.from(context).inflate(R.layout.dialog_apostar, null);
 
                 builder.setView(myView)
                         .setPositiveButton(R.string.dialogConfirm, new DialogInterface.OnClickListener() {
@@ -103,33 +106,26 @@ public class Juego extends AppCompatActivity {
 
                                 etCantidadApuesta = myView.findViewById(R.id.editTextCantidadApuesta);
 
-                                twApuesta.setText("Apuesta:" + etCantidadApuesta.getText().toString());
                                 cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
-
+                                String textoApuesta = getString(R.string.tvApuesta);
+                                twApuesta.setText(textoApuesta + " " + cantApostada);
 
                                 // TODO: Restar creditos jugador
 
-
-                                if(cantApostada > 0){
-                                    iniciarJuego();
-                                }
-
                                 dialog.dismiss();
 
-                    }
-                })
+                                if (cantApostada > 0) {
+                                    iniciarJuego();
+                                }
+                            }
+                        })
                         .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-
-                dialog.show();
+                                dialog.cancel();
+                            }
+                        }).create().show();
             }
         });
-
 
 
         // Botón para volver atrás
@@ -139,10 +135,9 @@ public class Juego extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
 
-    public void iniciarJuego(){
+    public void iniciarJuego() {
 
         String pathCarta;
         int valorCartasJugador, valorCartasCrupie;
@@ -154,7 +149,8 @@ public class Juego extends AppCompatActivity {
         Baraja baraja = new Baraja();
         baraja.barajar();
 
-        for(int i=0; i<2; i++){
+        // Se reparten las dos primeras cartas para cada uno
+        for (int i = 0; i < 2; i++) {
 
             mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
             mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
@@ -179,16 +175,18 @@ public class Juego extends AppCompatActivity {
              */
         }
 
-
+        // Calcular los puntos que lleva cada uno
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
-        twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
-        twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
+        twPuntosJugador.setText(String.valueOf(valorCartasJugador));
+        twPuntosCrupie.setText(String.valueOf(valorCartasCrupie));
 
+        partidaFinalizada = false;
 
-        if(!partidaTerminada(valorCartasCrupie, valorCartasJugador)){
-            int contador = 0;
+        if (!partidaTerminada(valorCartasCrupie, valorCartasJugador)) {
+            //int contador = 0;
+            boolean primerTurno = true;
 
             /* No vamos a separar (luego borramos esta parte)
 
@@ -206,21 +204,23 @@ public class Juego extends AppCompatActivity {
                         });
                     }
         */
-            if(contador == 0) {
+            if (primerTurno /*contador == 0*/) {
                 imgBtnDoblar.setVisibility(View.VISIBLE);
                 imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //Restar creditos jugador
 
-                        if(valorCartasCrupie < 17){
+                        if (valorCartasCrupie < 17) {
                             mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
                         }
 
                         mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
 
-                        twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
-                        twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
+                        int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                        int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+                        twPuntosJugador.setText("" + puntosJugador);
+                        twPuntosCrupie.setText("" + puntosCrupier);
 
                             /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
@@ -241,57 +241,61 @@ public class Juego extends AppCompatActivity {
                              */
                         imgBtnDoblar.setVisibility(View.INVISIBLE);
 
-                        //Solo llamo a esta funcion por que ya pos mi misma llama a reiniciar juego
-                        //Si se cumplen las condiciones( la de determinar ganador sobra)
-                        partidaTerminada(valorCartasCrupie, valorCartasJugador);
-
-                /*
-                        if (partidaTerminada(valorCartasCrupie, valorCartasJugador)) {
-                            determinarGanador(valorCartasCrupie, valorCartasJugador);
+                        if (partidaTerminada(puntosCrupier, puntosJugador)) {
+                            determinarGanador(puntosCrupier, puntosJugador);
+                            partidaFinalizada = true;
                         }
-
-                 */
                     }
                 });
 
-                contador++;
+                //contador++;
+                primerTurno = false;
             }
 
-                    imgBtnPlantarse.setVisibility(View.VISIBLE);
-                    imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+            imgBtnPlantarse.setVisibility(View.VISIBLE);
+            imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    imgBtnPlantarse.setVisibility(View.INVISIBLE);
+                    imgBtnPedirCarta.setVisibility(View.INVISIBLE);
 
-                            imgBtnPlantarse.setVisibility(View.INVISIBLE);
-                            imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+                    while (calcularValorCartas(cartasRepartidasCrupie) < 17) {
+                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                    }
 
-                            while(calcularValorCartas(cartasRepartidasCrupie) < 17){
-                                mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
-                            }
-                            twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
-                            twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
+                    int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                    int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+                    twPuntosJugador.setText("" + puntosJugador);
+                    twPuntosCrupie.setText("" + puntosCrupier);
+
+                    determinarGanador(puntosCrupier, puntosJugador);
+                    partidaFinalizada = true;
+                }
+            });
 
 
-                            //partidaTerminada(valorCartasCrupie, valorCartasJugador);
-                            determinarGanador(valorCartasCrupie, valorCartasJugador);
-                        }
-                    });
+            imgBtnPedirCarta.setVisibility(View.VISIBLE);
+            imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                    int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
 
-                    imgBtnPedirCarta.setVisibility(View.VISIBLE);
-                    imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //Repartir cartas crupie y jugador
+                    if (puntosCrupier < 17 && puntosJugador > 21) {
+                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                    }
 
-                            if(calcularValorCartas(cartasRepartidasCrupie) < 17){
-                                mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
-                            }
+                    mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
 
-                            mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
+                    puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                    puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+                    twPuntosJugador.setText("" + puntosJugador);
+                    twPuntosCrupie.setText("" + puntosCrupier);
 
-                            twPuntosJugador.setText("" + calcularValorCartas(cartasRepartidasJugador));
-                            twPuntosCrupie.setText(""+calcularValorCartas(cartasRepartidasCrupie));
+                    if (calcularValorCartas(cartasRepartidasJugador) >= 21) {
+                        imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+                    }
 
                             /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
@@ -312,85 +316,79 @@ public class Juego extends AppCompatActivity {
 
                              */
 
-                            //Solo llamo a esta funcion por que ya pos mi misma llama a reiniciar juego
-                            //Si se cumplen las condiciones( la de determinar ganador sobra)
-                            partidaTerminada(valorCartasCrupie, valorCartasJugador);
+                    if (partidaTerminada(puntosCrupier, puntosJugador)) {
+                        determinarGanador(puntosCrupier, puntosJugador);
+                        partidaFinalizada = true;
+                    }
+                }
+            });
 
-                /*
-                        if (partidaTerminada(valorCartasCrupie, valorCartasJugador)) {
-                            determinarGanador(valorCartasCrupie, valorCartasJugador);
-                        }
-
-                 */
-                        }
-                    });
-
-
-            }else{
-                determinarGanador(valorCartasCrupie, valorCartasJugador);
+        } else {
+            determinarGanador(valorCartasCrupie, valorCartasJugador);
+            partidaFinalizada = true;
         }
     }
 
     private void mostrarSiguienteCarta(List<Carta> cartasRepartidas, Baraja baraja, int quien) {
         int posicion = 0;
+
         cartasRepartidas.add(baraja.siguienteCarta());
-        //pathCarta = "../../res/drawable-v24/" +
-        String pathCarta = "C:\\Users\\Cris\\AndroidStudioProjects\\ProyectoBlackjack\\app\\src\\main\\res\\drawable-v24\\" +
-                cartasRepartidas.get(cartasRepartidas.size()-1).getValor().toString().toLowerCase() +
-                cartasRepartidas.get(cartasRepartidas.size()-1).getPalo().toString().toLowerCase() + ".png";
+//        String pathCarta = "../../res/drawable-v24/" +
+//                cartasRepartidas.get(cartasRepartidas.size() - 1).getValor().toString().toLowerCase() +
+//                cartasRepartidas.get(cartasRepartidas.size() - 1).getPalo().toString().toLowerCase() + ".png";
+
+
+        // PRUEBA DE ACCEDER AL DRAWABLE
+        String valor = cartasRepartidas.get(cartasRepartidas.size() - 1).getValor().toString().toLowerCase();
+        String palo = cartasRepartidas.get(cartasRepartidas.size() - 1).getPalo().toString().toLowerCase();
+        int resourceId = this.getResources().getIdentifier(valor + palo, "drawable", this.getPackageName());
+        String uri = Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resourceId).toString();
+        System.err.println(valor);
+        System.err.println(palo);
+        System.err.println(uri);
 
 
 
-        if(quien == 1){
+        if (quien == 1) {
             cartasJugador.get(contadorJugador).setVisibility(View.VISIBLE);
-            cartasJugador.get(contadorJugador).setBackground(Drawable.createFromPath(pathCarta));
+            cartasJugador.get(contadorJugador).setBackground(Drawable.createFromPath(uri));
 
-            contadorJugador ++;
-        }else{
+            contadorJugador++;
+        } else {
             cartasCrupie.get(contadorCrupie).setVisibility(View.VISIBLE);
-            cartasCrupie.get(contadorCrupie).setBackground(Drawable.createFromPath(pathCarta));
+            cartasCrupie.get(contadorCrupie).setBackground(Drawable.createFromPath(uri));
 
-            contadorCrupie ++;
-        }
-
-
-    }
-
-    public void determinarGanador(int valorCartasCrupie, int valorCartasJugador){
-        if((valorCartasCrupie > valorCartasJugador) && valorCartasCrupie < 22){
-            reiniciarPartida(0);
-        }else if((valorCartasCrupie < valorCartasJugador) && valorCartasJugador < 22){
-            reiniciarPartida(1);
-        }else if(valorCartasCrupie == valorCartasJugador){
-            reiniciarPartida(2);
-        }else{
-            if(valorCartasJugador < 22 && valorCartasJugador < valorCartasCrupie){
-                reiniciarPartida(1);
-            }else if (valorCartasCrupie < 22 && valorCartasCrupie < valorCartasJugador){
-                reiniciarPartida(0);
-            }else{
-                reiniciarPartida(2);
-            }
+            contadorCrupie++;
         }
     }
 
-    // TODO: revisar ( mofificado, ya funciona en todos los casos)
+    public void determinarGanador(int valorCartasCrupie, int valorCartasJugador) {
+        if (((valorCartasCrupie > valorCartasJugador) && valorCartasCrupie < 22) || valorCartasJugador > 21) {
+            reiniciarPartida(0); // Gana crupier
+        } else if (((valorCartasCrupie < valorCartasJugador) && valorCartasJugador < 22) || valorCartasCrupie > 21) {
+            reiniciarPartida(1); // Gana jugador
+        } else if (valorCartasCrupie == valorCartasJugador) {
+            reiniciarPartida(2); // Empate
+        } else if (valorCartasJugador < 22 && valorCartasJugador > valorCartasCrupie) {
+            reiniciarPartida(1); // Gana jugador
+        //} else if (valorCartasCrupie < 22 && valorCartasCrupie < valorCartasJugador) {
+        //    reiniciarPartida(0); // Gana crupier
+        } else {
+            reiniciarPartida(2); // Empate
+        }
+    }
+
     private boolean partidaTerminada(int valorCartasCrupie, int valorCartasJugador) {
         boolean finPartida = false;
 
-        if(valorCartasCrupie >= 21 || valorCartasJugador >= 21){
-
-            if(valorCartasCrupie > 21){
-                reiniciarPartida(1);
-            }else{
-                if(valorCartasJugador > 21){
-                    reiniciarPartida(0);
-                }else if(valorCartasJugador == 21){
-                    reiniciarPartida(1);
-                }else{
-                    reiniciarPartida(0);
-                }
-            }
+        if (valorCartasCrupie >= 21 || valorCartasJugador >= 21) {
+//            if (valorCartasCrupie > 21 || valorCartasJugador == 21) {
+//                reiniciarPartida(1); // Gana el jugador
+//            } else if (valorCartasJugador > 21) {
+//                reiniciarPartida(0); // Gana el crupier
+//            } else {
+//                reiniciarPartida(0);
+//            }
 
             finPartida = true;
         }
@@ -398,43 +396,43 @@ public class Juego extends AppCompatActivity {
         return finPartida;
     }
 
-    public void reiniciarPartida(int codigo){
-        String mensaje = "";
+    public void reiniciarPartida(int codigo) {
+        int mensaje = 0;
 
         imgBtnDoblar.setVisibility(View.INVISIBLE);
         imgBtnPedirCarta.setVisibility(View.INVISIBLE);
         imgBtnPlantarse.setVisibility(View.INVISIBLE);
         imgBtnSeparar.setVisibility(View.INVISIBLE);
 
-        switch(codigo){
+        switch (codigo) {
             case 0:
-                mensaje = String.valueOf(R.string.toastGanaCrupier);
+                mensaje = R.string.toastGanaCrupier;
                 break;
             case 1:
-                mensaje = String.valueOf(R.string.toastGanaJugador);
+                mensaje = R.string.toastGanaJugador;
                 break;
             case 2:
-                mensaje = String.valueOf(R.string.toastEmpate);
+                mensaje = R.string.toastEmpate;
                 break;
         }
-
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+        System.err.println(mensaje);
+        Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();
     }
 
     private boolean comprobarSiSonIguales(List<Carta> cartas) {
         boolean exito = false;
 
-        if(cartas.get(0).getValor().getNumVal() == cartas.get(1).getValor().getNumVal()){
+        if (cartas.get(0).getValor().getNumVal() == cartas.get(1).getValor().getNumVal()) {
             exito = true;
         }
 
         return exito;
     }
 
-    public int calcularValorCartas(List<Carta> cartas){
+    public int calcularValorCartas(List<Carta> cartas) {
         int valor = 0;
 
-        for(int i=0 ; i<cartas.size(); i++){
+        for (int i = 0; i < cartas.size(); i++) {
             valor += cartas.get(i).getValor().getNumVal();
         }
 
