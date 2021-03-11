@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Juego extends AppCompatActivity {
-    private static int JUGADOR = 1;
-    private static int CRUPIER = 0;
+    private static final int JUGADOR = 1;
+    private static final int CRUPIER = 0;
 
     private Button btnApostar;
     private ImageButton imgBtnVolver;
@@ -92,51 +89,37 @@ public class Juego extends AppCompatActivity {
         etCantidadApuesta = findViewById(R.id.editTextCantidadApuesta);
 
         // Botón para apostar
-        btnApostar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnApostar.setOnClickListener(v -> {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                builder.setTitle(R.string.titleDialog);
+            builder.setTitle(R.string.titleDialog);
 
-                View myView = LayoutInflater.from(context).inflate(R.layout.dialog_apostar, null);
+            View myView = LayoutInflater.from(context).inflate(R.layout.dialog_apostar, null);
 
-                builder.setView(myView)
-                        .setPositiveButton(R.string.dialogConfirm, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+            builder.setView(myView)
+                    .setPositiveButton(R.string.dialogConfirm, (dialog, id) -> {
 
-                                etCantidadApuesta = myView.findViewById(R.id.editTextCantidadApuesta);
+                        etCantidadApuesta = myView.findViewById(R.id.editTextCantidadApuesta);
 
-                                cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
-                                String textoApuesta = getString(R.string.tvApuesta);
-                                twApuesta.setText(textoApuesta + " " + cantApostada);
+                        cantApostada = Integer.parseInt(etCantidadApuesta.getText().toString());
+                        String textoApuesta = getString(R.string.tvApuesta);
+                        twApuesta.setText(textoApuesta + " " + cantApostada);
 
-                                // TODO: Restar creditos jugador
+                        // TODO: Restar creditos jugador
 
-                                dialog.dismiss();
+                        dialog.dismiss();
 
-                                if (cantApostada > 0) {
-                                    iniciarJuego();
-                                }
-                            }
-                        })
-                        .setNegativeButton(R.string.dialogCancel, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        }).create().show();
-            }
+                        if (cantApostada > 0) {
+                            iniciarJuego();
+                        }
+                    })
+                    .setNegativeButton(R.string.dialogCancel, (dialog, id) -> dialog.cancel()).create().show();
         });
 
 
         // Botón para volver atrás
-        imgBtnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        imgBtnVolver.setOnClickListener(v -> onBackPressed());
     }
 
     public void iniciarJuego() {
@@ -149,13 +132,19 @@ public class Juego extends AppCompatActivity {
         Baraja baraja = new Baraja();
         baraja.barajar();
 
+        // Ocultamos las dos cartas que aparecen bocabajo al principio
+        for (int i = 6; i < 8; i++) {
+            cartasCrupie.get(i).setVisibility(View.INVISIBLE);
+            cartasJugador.get(i).setVisibility(View.INVISIBLE);
+        }
+
         // Se reparten las dos primeras cartas para cada uno
         for (int i = 0; i < 2; i++) {
             mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
             mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
         }
 
-        // Calcular los puntos que lleva cada uno y ponerlos en los TextView
+        // Calculamos los puntos que lleva cada uno y ponerlos en los TextView
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
@@ -172,34 +161,31 @@ public class Juego extends AppCompatActivity {
 
             if (primerTurno) {
                 imgBtnDoblar.setVisibility(View.VISIBLE);
-                imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Restar creditos jugador
+                imgBtnDoblar.setOnClickListener(v -> {
+                    //Restar creditos jugador
 
-                        if (valorCartasCrupie < 17) {
-                            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
-                        }
+                    if (valorCartasCrupie < 17) {
+                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
+                    }
 
-                        mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
+                    mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
 
-                        // Recalculamos los puntos que lleva cada uno y seteamos los TextView
-                        int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
-                        int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+                    // Recalculamos los puntos que lleva cada uno y seteamos los TextView
+                    int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                    int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
 
-                        String textoPuntosJugador = getString(R.string.tvPuntosJugador);
-                        String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+                    String textoPuntosJugador1 = getString(R.string.tvPuntosJugador);
+                    String textoPuntosCrupier1 = getString(R.string.tvPuntosCrupier);
 
-                        twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
-                        twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
+                    twPuntosJugador.setText(textoPuntosJugador1 + " " + puntosJugador);
+                    twPuntosCrupie.setText(textoPuntosCrupier1 + " " + puntosCrupier);
 
-                        // Ocultamos el botón ya que no se puede volver a usar
-                        imgBtnDoblar.setVisibility(View.INVISIBLE);
+                    // Ocultamos el botón ya que no se puede volver a usar
+                    imgBtnDoblar.setVisibility(View.INVISIBLE);
 
-                        if (partidaTerminada(puntosCrupier, puntosJugador)) {
-                            determinarGanador(puntosCrupier, puntosJugador);
-                            partidaFinalizada = true;
-                        }
+                    if (partidaTerminada(puntosCrupier, puntosJugador)) {
+                        determinarGanador(puntosCrupier, puntosJugador);
+                        partidaFinalizada = true;
                     }
                 });
 
@@ -207,66 +193,60 @@ public class Juego extends AppCompatActivity {
             }
 
             imgBtnPlantarse.setVisibility(View.VISIBLE);
-            imgBtnPlantarse.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    imgBtnPlantarse.setVisibility(View.INVISIBLE);
-                    imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+            imgBtnPlantarse.setOnClickListener(v -> {
+                imgBtnPlantarse.setVisibility(View.INVISIBLE);
+                imgBtnPedirCarta.setVisibility(View.INVISIBLE);
 
-                    // Mientras que el crupier tenga menos de 17 puntos, va a seguir pidiendo cartas
-                    while (calcularValorCartas(cartasRepartidasCrupie) < 17) {
-                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
-                    }
-
-                    // Recalculamos los puntos que lleva cada uno y seteamos los TextView
-                    int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
-                    int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
-
-                    String textoPuntosJugador = getString(R.string.tvPuntosJugador);
-                    String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
-
-                    twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
-                    twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
-
-                    determinarGanador(puntosCrupier, puntosJugador);
-                    partidaFinalizada = true;
+                // Mientras que el crupier tenga menos de 17 puntos, va a seguir pidiendo cartas
+                while (calcularValorCartas(cartasRepartidasCrupie) < 17) {
+                    mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
                 }
+
+                // Recalculamos los puntos que lleva cada uno y seteamos los TextView
+                int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+
+                String textoPuntosJugador12 = getString(R.string.tvPuntosJugador);
+                String textoPuntosCrupier12 = getString(R.string.tvPuntosCrupier);
+
+                twPuntosJugador.setText(textoPuntosJugador12 + " " + puntosJugador);
+                twPuntosCrupie.setText(textoPuntosCrupier12 + " " + puntosCrupier);
+
+                determinarGanador(puntosCrupier, puntosJugador);
+                partidaFinalizada = true;
             });
 
 
             imgBtnPedirCarta.setVisibility(View.VISIBLE);
-            imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
-                    int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+            imgBtnPedirCarta.setOnClickListener(v -> {
+                int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
 
-                    if (puntosCrupier < 17 && puntosJugador > 21) {
-                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
-                    }
+                if (puntosCrupier < 17 && puntosJugador > 21) {
+                    mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
+                }
 
-                    // Se muestra una nueva carta para el jugador
-                    mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
+                // Se muestra una nueva carta para el jugador
+                mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
 
-                    // Recalculamos los puntos que lleva cada uno y seteamos los TextView
-                    puntosJugador = calcularValorCartas(cartasRepartidasJugador);
-                    puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+                // Recalculamos los puntos que lleva cada uno y seteamos los TextView
+                puntosJugador = calcularValorCartas(cartasRepartidasJugador);
+                puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
 
-                    String textoPuntosJugador = getString(R.string.tvPuntosJugador);
-                    String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+                String textoPuntosJugador13 = getString(R.string.tvPuntosJugador);
+                String textoPuntosCrupier13 = getString(R.string.tvPuntosCrupier);
 
-                    twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
-                    twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
+                twPuntosJugador.setText(textoPuntosJugador13 + " " + puntosJugador);
+                twPuntosCrupie.setText(textoPuntosCrupier13 + " " + puntosCrupier);
 
-                    // Si los puntos del jugador son 21 o más, se oculta el botón ya que no se puede seguir usando
-                    if (calcularValorCartas(cartasRepartidasJugador) >= 21) {
-                        imgBtnPedirCarta.setVisibility(View.INVISIBLE);
-                    }
+                // Si los puntos del jugador son 21 o más, se oculta el botón ya que no se puede seguir usando
+                if (calcularValorCartas(cartasRepartidasJugador) >= 21) {
+                    imgBtnPedirCarta.setVisibility(View.INVISIBLE);
+                }
 
-                    if (partidaTerminada(puntosCrupier, puntosJugador)) {
-                        determinarGanador(puntosCrupier, puntosJugador);
-                        partidaFinalizada = true;
-                    }
+                if (partidaTerminada(puntosCrupier, puntosJugador)) {
+                    determinarGanador(puntosCrupier, puntosJugador);
+                    partidaFinalizada = true;
                 }
             });
 
