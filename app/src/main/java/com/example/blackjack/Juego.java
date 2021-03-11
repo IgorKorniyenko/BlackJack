@@ -26,6 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Juego extends AppCompatActivity {
+    private static int JUGADOR = 1;
+    private static int CRUPIER = 0;
 
     private Button btnApostar;
     private ImageButton imgBtnVolver;
@@ -70,7 +72,7 @@ public class Juego extends AppCompatActivity {
         twPuntosJugador = findViewById(R.id.puntosJugador);
         twPuntosCrupie = findViewById(R.id.puntosCrupier);
 
-        // TODO: añadir fondo vacío
+
         cartasCrupie.addAll(Arrays.asList(findViewById(R.id.imageViewCartaCrupie1), findViewById(R.id.imageViewCartaCrupie2),
                 findViewById(R.id.imageViewCartaCrupie3), findViewById(R.id.imageViewCartaCrupie4),
                 findViewById(R.id.imageViewCartaCrupie5), findViewById(R.id.imageViewCartaCrupie6),
@@ -139,9 +141,7 @@ public class Juego extends AppCompatActivity {
 
     public void iniciarJuego() {
 
-        String pathCarta;
         int valorCartasJugador, valorCartasCrupie;
-
 
         List<Carta> cartasRepartidasJugador = new ArrayList<>();
         List<Carta> cartasRepartidasCrupie = new ArrayList<>();
@@ -151,62 +151,26 @@ public class Juego extends AppCompatActivity {
 
         // Se reparten las dos primeras cartas para cada uno
         for (int i = 0; i < 2; i++) {
-
-            mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
-            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
-
-            /*
-            cartasRepartidasJugador.add(baraja.siguienteCarta());
-            //pathCarta = "../../res/drawable-v24/" +
-            pathCarta = "C:\\Users\\Cris\\AndroidStudioProjects\\ProyectoBlackjack\\app\\src\\main\\res\\drawable-v24\\" +
-                    cartasRepartidasJugador.get(i).getValor().toString().toLowerCase() +
-                    cartasRepartidasJugador.get(i).getPalo().toString().toLowerCase() + ".png";
-
-            cartasJugador.get(i).setBackground(Drawable.createFromPath(pathCarta));
-
-
-            cartasRepartidasCrupie.add(baraja.siguienteCarta());
-            pathCarta = "../../res/drawable-v24/" +
-                    cartasRepartidasCrupie.get(i).getValor().toString().toLowerCase() +
-                    cartasRepartidasCrupie.get(i).getPalo().toString().toLowerCase() + ".png";
-
-            cartasCrupie.get(i).setBackground(Drawable.createFromPath(pathCarta));
-
-             */
+            mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
+            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
         }
 
-        // Calcular los puntos que lleva cada uno
+        // Calcular los puntos que lleva cada uno y ponerlos en los TextView
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
         String textoPuntosJugador = getString(R.string.tvPuntosJugador);
         String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+
         twPuntosJugador.setText(textoPuntosJugador + " " + valorCartasJugador);
         twPuntosCrupie.setText(textoPuntosCrupier + " " + valorCartasCrupie);
 
         partidaFinalizada = false;
 
         if (!partidaTerminada(valorCartasCrupie, valorCartasJugador)) {
-            //int contador = 0;
             boolean primerTurno = true;
 
-            /* No vamos a separar (luego borramos esta parte)
-
-                    if(comprobarSiSonIguales(cartasRepartidasJugador)){
-                        imgBtnSeparar.setVisibility(View.VISIBLE);
-                        imgBtnSeparar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                //Restar creditos
-                                //Repartir dos cartas mas
-                                //Dar carta a crupie
-
-                                imgBtnSeparar.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
-        */
-            if (primerTurno /*contador == 0*/) {
+            if (primerTurno) {
                 imgBtnDoblar.setVisibility(View.VISIBLE);
                 imgBtnDoblar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -214,35 +178,22 @@ public class Juego extends AppCompatActivity {
                         //Restar creditos jugador
 
                         if (valorCartasCrupie < 17) {
-                            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                            mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
                         }
 
-                        mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
+                        mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
 
+                        // Recalculamos los puntos que lleva cada uno y seteamos los TextView
                         int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                         int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+
                         String textoPuntosJugador = getString(R.string.tvPuntosJugador);
                         String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+
                         twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
                         twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
 
-                            /*
-                            cartasRepartidasJugador.add(b.siguienteCarta());
-                            String pathCarta = "../../res/drawable-v24/" +
-                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getValor().toString().toLowerCase() +
-                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getPalo().toString().toLowerCase() + ".png";
-
-                            cartasJugador.get(cartasJugador.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
-
-                            cartasRepartidasCrupie.add(b.siguienteCarta());
-                            pathCarta = "../../res/drawable-v24/" +
-                                    cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getValor().toString().toLowerCase() +
-                                    cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getPalo().toString().toLowerCase() + ".png";
-
-                            cartasCrupie.get(cartasRepartidasCrupie.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
-
-
-                             */
+                        // Ocultamos el botón ya que no se puede volver a usar
                         imgBtnDoblar.setVisibility(View.INVISIBLE);
 
                         if (partidaTerminada(puntosCrupier, puntosJugador)) {
@@ -252,7 +203,6 @@ public class Juego extends AppCompatActivity {
                     }
                 });
 
-                //contador++;
                 primerTurno = false;
             }
 
@@ -263,14 +213,18 @@ public class Juego extends AppCompatActivity {
                     imgBtnPlantarse.setVisibility(View.INVISIBLE);
                     imgBtnPedirCarta.setVisibility(View.INVISIBLE);
 
+                    // Mientras que el crupier tenga menos de 17 puntos, va a seguir pidiendo cartas
                     while (calcularValorCartas(cartasRepartidasCrupie) < 17) {
-                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
                     }
 
+                    // Recalculamos los puntos que lleva cada uno y seteamos los TextView
                     int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                     int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+
                     String textoPuntosJugador = getString(R.string.tvPuntosJugador);
                     String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+
                     twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
                     twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
 
@@ -284,45 +238,30 @@ public class Juego extends AppCompatActivity {
             imgBtnPedirCarta.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                     int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
 
                     if (puntosCrupier < 17 && puntosJugador > 21) {
-                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, 0);
+                        mostrarSiguienteCarta(cartasRepartidasCrupie, baraja, CRUPIER);
                     }
 
-                    mostrarSiguienteCarta(cartasRepartidasJugador, baraja, 1);
+                    // Se muestra una nueva carta para el jugador
+                    mostrarSiguienteCarta(cartasRepartidasJugador, baraja, JUGADOR);
 
+                    // Recalculamos los puntos que lleva cada uno y seteamos los TextView
                     puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                     puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
+
                     String textoPuntosJugador = getString(R.string.tvPuntosJugador);
                     String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+
                     twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
                     twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
 
+                    // Si los puntos del jugador son 21 o más, se oculta el botón ya que no se puede seguir usando
                     if (calcularValorCartas(cartasRepartidasJugador) >= 21) {
                         imgBtnPedirCarta.setVisibility(View.INVISIBLE);
                     }
-
-                            /*
-                            cartasRepartidasJugador.add(b.siguienteCarta());
-                            String pathCarta = "../../res/drawable-v24/" +
-                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getValor().toString().toLowerCase() +
-                                    cartasRepartidasJugador.get(cartasRepartidasJugador.size() - 1).getPalo().toString().toLowerCase() + ".png";
-
-                            cartasJugador.get(cartasJugador.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
-
-                            if(valorCartasCrupie < 17) {
-                                cartasRepartidasCrupie.add(b.siguienteCarta());
-                                pathCarta = "../../res/drawable-v24/" +
-                                        cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getValor().toString().toLowerCase() +
-                                        cartasRepartidasCrupie.get(cartasRepartidasCrupie.size() - 1).getPalo().toString().toLowerCase() + ".png";
-
-                                cartasCrupie.get(cartasRepartidasCrupie.size() - 1).setBackground(Drawable.createFromPath(pathCarta));
-                            }
-
-                             */
 
                     if (partidaTerminada(puntosCrupier, puntosJugador)) {
                         determinarGanador(puntosCrupier, puntosJugador);
@@ -339,32 +278,24 @@ public class Juego extends AppCompatActivity {
 
     private void mostrarSiguienteCarta(List<Carta> cartasRepartidas, Baraja baraja, int quien) {
         cartasRepartidas.add(baraja.siguienteCarta());
-//        String pathCarta = "../../res/drawable-v24/" +
-//                cartasRepartidas.get(cartasRepartidas.size() - 1).getValor().toString().toLowerCase() +
-//                cartasRepartidas.get(cartasRepartidas.size() - 1).getPalo().toString().toLowerCase() + ".png";
 
+        // Obtenemos el valor y el palo de la última carta repartida para "construir" el Drawable
+        Carta ultimaRepartida = cartasRepartidas.get(cartasRepartidas.size() - 1);
+        String valor = ultimaRepartida.getValor().toString().toLowerCase();
+        String palo = ultimaRepartida.getPalo().toString().toLowerCase();
 
-        // PRUEBA DE ACCEDER AL DRAWABLE
-        String valor = cartasRepartidas.get(cartasRepartidas.size() - 1).getValor().toString().toLowerCase();
-        String palo = cartasRepartidas.get(cartasRepartidas.size() - 1).getPalo().toString().toLowerCase();
+        // Obtenemos el id del Drawable
         int resourceId = this.getResources().getIdentifier(valor + palo, "drawable", this.getPackageName());
-//        String uri = Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resourceId).toString();
-//        System.err.println(valor);
-//        System.err.println(palo);
-//        System.err.println(uri);
 
-
-        if (quien == 1) {
+        // "Pintamos" el Drawable a quien corresponda
+        if (quien == JUGADOR) {
             cartasJugador.get(contadorJugador).setVisibility(View.VISIBLE);
             cartasJugador.get(contadorJugador).setImageResource(resourceId);
-            //cartasJugador.get(contadorJugador).setImageDrawable(Drawable.createFromPath(uri));
-            //cartasJugador.get(contadorJugador).setBackground(Drawable.createFromPath(uri));
 
             contadorJugador++;
         } else {
             cartasCrupie.get(contadorCrupie).setVisibility(View.VISIBLE);
-            cartasJugador.get(contadorJugador).setImageResource(resourceId);
-            //cartasCrupie.get(contadorCrupie).setBackground(Drawable.createFromPath(uri));
+            cartasCrupie.get(contadorCrupie).setImageResource(resourceId);
 
             contadorCrupie++;
         }
@@ -379,8 +310,6 @@ public class Juego extends AppCompatActivity {
             reiniciarPartida(2); // Empate
         } else if (valorCartasJugador < 22 && valorCartasJugador > valorCartasCrupie) {
             reiniciarPartida(1); // Gana jugador
-        //} else if (valorCartasCrupie < 22 && valorCartasCrupie < valorCartasJugador) {
-        //    reiniciarPartida(0); // Gana crupier
         } else {
             reiniciarPartida(2); // Empate
         }
@@ -390,14 +319,6 @@ public class Juego extends AppCompatActivity {
         boolean finPartida = false;
 
         if (valorCartasCrupie >= 21 || valorCartasJugador >= 21) {
-//            if (valorCartasCrupie > 21 || valorCartasJugador == 21) {
-//                reiniciarPartida(1); // Gana el jugador
-//            } else if (valorCartasJugador > 21) {
-//                reiniciarPartida(0); // Gana el crupier
-//            } else {
-//                reiniciarPartida(0);
-//            }
-
             finPartida = true;
         }
 
@@ -425,16 +346,6 @@ public class Juego extends AppCompatActivity {
         }
         System.err.println(mensaje);
         Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();
-    }
-
-    private boolean comprobarSiSonIguales(List<Carta> cartas) {
-        boolean exito = false;
-
-        if (cartas.get(0).getValor().getNumVal() == cartas.get(1).getValor().getNumVal()) {
-            exito = true;
-        }
-
-        return exito;
     }
 
     public int calcularValorCartas(List<Carta> cartas) {
