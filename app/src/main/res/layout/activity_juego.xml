@@ -250,19 +250,28 @@
         android:id="@+id/puntosJugador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:text="TextView"
+        android:text="@string/tvPuntosJugador"
+        android:fontFamily="@font/sniglet"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonPedir"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewApuesta"
-        tools:layout_editor_absoluteY="263dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCartaJugador7" />
 
     <TextView
         android:id="@+id/puntosCrupier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/puntosJugador"
-        app:layout_constraintTop_toBottomOf="@+id/puntosJugador" />
+        android:text="@string/tvPuntosCrupier"
+        android:fontFamily="@font/sniglet"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewCartaCrupie8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFichas" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

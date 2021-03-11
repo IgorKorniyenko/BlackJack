@@ -179,8 +179,10 @@ public class Juego extends AppCompatActivity {
         valorCartasJugador = calcularValorCartas(cartasRepartidasJugador);
         valorCartasCrupie = calcularValorCartas(cartasRepartidasCrupie);
 
-        twPuntosJugador.setText(String.valueOf(valorCartasJugador));
-        twPuntosCrupie.setText(String.valueOf(valorCartasCrupie));
+        String textoPuntosJugador = getString(R.string.tvPuntosJugador);
+        String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+        twPuntosJugador.setText(textoPuntosJugador + " " + valorCartasJugador);
+        twPuntosCrupie.setText(textoPuntosCrupier + " " + valorCartasCrupie);
 
         partidaFinalizada = false;
 
@@ -219,8 +221,10 @@ public class Juego extends AppCompatActivity {
 
                         int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                         int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
-                        twPuntosJugador.setText("" + puntosJugador);
-                        twPuntosCrupie.setText("" + puntosCrupier);
+                        String textoPuntosJugador = getString(R.string.tvPuntosJugador);
+                        String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+                        twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
+                        twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
 
                             /*
                             cartasRepartidasJugador.add(b.siguienteCarta());
@@ -265,8 +269,10 @@ public class Juego extends AppCompatActivity {
 
                     int puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                     int puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
-                    twPuntosJugador.setText("" + puntosJugador);
-                    twPuntosCrupie.setText("" + puntosCrupier);
+                    String textoPuntosJugador = getString(R.string.tvPuntosJugador);
+                    String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+                    twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
+                    twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
 
                     determinarGanador(puntosCrupier, puntosJugador);
                     partidaFinalizada = true;
@@ -290,8 +296,10 @@ public class Juego extends AppCompatActivity {
 
                     puntosJugador = calcularValorCartas(cartasRepartidasJugador);
                     puntosCrupier = calcularValorCartas(cartasRepartidasCrupie);
-                    twPuntosJugador.setText("" + puntosJugador);
-                    twPuntosCrupie.setText("" + puntosCrupier);
+                    String textoPuntosJugador = getString(R.string.tvPuntosJugador);
+                    String textoPuntosCrupier = getString(R.string.tvPuntosCrupier);
+                    twPuntosJugador.setText(textoPuntosJugador + " " + puntosJugador);
+                    twPuntosCrupie.setText(textoPuntosCrupier + " " + puntosCrupier);
 
                     if (calcularValorCartas(cartasRepartidasJugador) >= 21) {
                         imgBtnPedirCarta.setVisibility(View.INVISIBLE);
@@ -330,8 +338,6 @@ public class Juego extends AppCompatActivity {
     }
 
     private void mostrarSiguienteCarta(List<Carta> cartasRepartidas, Baraja baraja, int quien) {
-        int posicion = 0;
-
         cartasRepartidas.add(baraja.siguienteCarta());
 //        String pathCarta = "../../res/drawable-v24/" +
 //                cartasRepartidas.get(cartasRepartidas.size() - 1).getValor().toString().toLowerCase() +
@@ -342,21 +348,23 @@ public class Juego extends AppCompatActivity {
         String valor = cartasRepartidas.get(cartasRepartidas.size() - 1).getValor().toString().toLowerCase();
         String palo = cartasRepartidas.get(cartasRepartidas.size() - 1).getPalo().toString().toLowerCase();
         int resourceId = this.getResources().getIdentifier(valor + palo, "drawable", this.getPackageName());
-        String uri = Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resourceId).toString();
-        System.err.println(valor);
-        System.err.println(palo);
-        System.err.println(uri);
-
+//        String uri = Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resourceId).toString();
+//        System.err.println(valor);
+//        System.err.println(palo);
+//        System.err.println(uri);
 
 
         if (quien == 1) {
             cartasJugador.get(contadorJugador).setVisibility(View.VISIBLE);
-            cartasJugador.get(contadorJugador).setBackground(Drawable.createFromPath(uri));
+            cartasJugador.get(contadorJugador).setImageResource(resourceId);
+            //cartasJugador.get(contadorJugador).setImageDrawable(Drawable.createFromPath(uri));
+            //cartasJugador.get(contadorJugador).setBackground(Drawable.createFromPath(uri));
 
             contadorJugador++;
         } else {
             cartasCrupie.get(contadorCrupie).setVisibility(View.VISIBLE);
-            cartasCrupie.get(contadorCrupie).setBackground(Drawable.createFromPath(uri));
+            cartasJugador.get(contadorJugador).setImageResource(resourceId);
+            //cartasCrupie.get(contadorCrupie).setBackground(Drawable.createFromPath(uri));
 
             contadorCrupie++;
         }

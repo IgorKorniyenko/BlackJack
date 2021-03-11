@@ -14,6 +14,8 @@
     <string name="toastGanaCrupier">Gana el crupier</string>
     <string name="toastGanaJugador">Gana el jugador</string>
     <string name="toastEmpate">Empate</string>
+    <string name="tvPuntosJugador">Jugador:</string>
+    <string name="tvPuntosCrupier">Crupier:</string>
 
     <!-- Menu -->
     <string name="btnJugar">Jugar</string>
